@@ -8,19 +8,19 @@ const Navbar = () => {
     <nav>
       <div className="left">
         <div className="logo">LOGO</div>
-        <div className='searchbox'>
-          <BiSearch className='searchbtn' />
+        <div className="search-box">
+          <BiSearch className="search-btn" />
           <input type="text" placeholder="Search For a Movie" />
         </div>
       </div>
       <div className="right">
-        <p className='dropdown'>
+        <p className="dropdown">
           Choose Location
-          <RiArrowDropDownFill className="dropicon" />
+          <RiArrowDropDownFill className="drop-icon" />
         </p>
-        <NavLink to="/" className='theme_btn1 linkstylenone'>Logout</NavLink>
-        <NavLink to="/" className='linkstylenone'>
-          <BiUserCircle className='theme_icon1' />
+        <NavLink to="/" className="theme-btn1 linkstylenone">Logout</NavLink>
+        <NavLink to="/" className="linkstylenone">
+          <BiUserCircle className="theme-icon1" />
         </NavLink>
       </div>
     </nav>
