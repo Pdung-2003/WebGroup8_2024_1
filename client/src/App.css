@@ -10,7 +10,7 @@
   --errorcol: rgb(255, 0, 0);
 }
 
-.theme_btn1 {
+.theme-btn1 {
   background-color: var(--col1);
   color: white;
   border: none;
