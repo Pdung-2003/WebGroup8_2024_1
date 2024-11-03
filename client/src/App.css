@@ -7,6 +7,7 @@
 :root{
   --col1: rgb(248, 68, 100);
   --col2: #333444;
+  --col3: #F5F5F5;
   --errorcol: rgb(255, 0, 0);
 }
 
