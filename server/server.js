@@ -1,10 +1,13 @@
 const express = require('express');
-const connection = require('./db');
+const cors = require('cors')
+const connection = require('./connectionMySQL');
+require('dotenv').config();
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT;
 
-// Route để kiểm tra kết nối
+app.use(cors());
+
 app.get('/test', (req, res) => {
     connection.query('SELECT * FROM User', (error, results) => {
         if (error) {
