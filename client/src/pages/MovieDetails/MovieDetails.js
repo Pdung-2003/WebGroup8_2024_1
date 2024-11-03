@@ -43,12 +43,12 @@ const MovieDetails = () => {
   return (
     <div className="movie-page">
       <div
-        className="c1"
+        className="top"
         style={{
           backgroundImage: `url(${movie.wideposter})`,
         }}
       >
-        <div className="c11">
+        <div className="banner">
           <div className="left">
             <div
               className="movie-poster"
