@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const connection = require('../connectionMySQL')
+const connection = require('../connection')
 
 router.get('/getCinema', async function(req, res) {
     try {
