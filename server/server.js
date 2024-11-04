@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors')
-const connection = require('./connectionMySQL');
+const connection = require('./connection');
 require('dotenv').config();
 const cinemaApi = require('./routes/cinemaApi');
 
