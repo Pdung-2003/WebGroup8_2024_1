@@ -1,10 +1,6 @@
 const { Sequelize } = require('sequelize');
 require('dotenv').config();
 
-console.log("Host:", process.env.DB_HOST);
-console.log("User:", process.env.DB_USER);
-console.log("Password:", process.env.DB_PASSWORD);
-console.log("Database:", process.env.DB_DATABASE);
 
 // Tạo đối tượng Sequelize với các thông tin từ file .env
 const sequelize = new Sequelize(process.env.DB_DATABASE, process.env.DB_USER, process.env.DB_PASSWORD, {
