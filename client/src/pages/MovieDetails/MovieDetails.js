@@ -1,5 +1,6 @@
 import React from "react";
 import { BsShare, BsFillStarFill } from "react-icons/bs";
+import MovieSchedule from "./MovieSchedule";
 import "./MovieDetails.css";
 
 const MovieDetails = () => {
@@ -97,7 +98,9 @@ const MovieDetails = () => {
                 <p className="genre">Thể loại: {movie.genre}</p>
                 <p className="release-date">Khởi chiếu: {movie.releasedate}</p>
               </div>
-              <button className="book-btn">Đặt vé</button>
+              <a href="#movie-schedule">
+                <button className="book-btn">Đặt vé</button>
+              </a>
             </div>
           </div>
           <div className="right">
@@ -110,6 +113,9 @@ const MovieDetails = () => {
       </div>
       <div className="trailer">
         <iframe width="640" height="360" src="https://www.youtube.com/embed/iwaU3a_zD2o?si=CBVAzO0OPj-EbgfA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+      <div id="movie-schedule">
+        <MovieSchedule />
       </div>
     </div>
   );
