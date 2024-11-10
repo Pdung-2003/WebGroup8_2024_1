@@ -11,7 +11,7 @@ const MovieDetails = () => {
       "https://bhdstar.vn/wp-content/uploads/2024/10/referenceSchemeHeadOfficeallowPlaceHoldertrueheight700ldapp-21.jpg", // No separate portrait poster found, using the same image
     title: "VENOM: THE LAST DANCE: KÈO CUỐI",
     rating: 4.8,
-    halls: ["2D", "3D"],
+    formats: ["2D", "3D"],
     duration: "109 phút",
     genre: "Action",
     releasedate: "25/10/2024",
@@ -66,10 +66,10 @@ const MovieDetails = () => {
                 &nbsp;&nbsp;
                 {movie.rating}/5
               </p>
-              <div className="movie-halls">
-                <p className="halls">
-                  {movie.halls.map((hall, index) => {
-                    return <span key={index}>{hall} </span>;
+              <div className="movie-formats">
+                <p className="formats">
+                  {movie.formats.map((format, index) => {
+                    return <span key={index}>{format} </span>;
                   })}
                 </p>
               </div>
