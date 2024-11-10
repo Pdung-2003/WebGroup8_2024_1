@@ -1,8 +1,12 @@
 import React from "react";
+import { useLocation } from 'react-router-dom';
 import DatePicker from "react-horizontal-datepicker";
 import "./MovieSchedule.css";
 
 const MovieSchedule = () => {
+  const pathname = useLocation().pathname;
+  console.log(pathname);
+
   const movie = {
     date: new Date(),
     cinemas: [
@@ -45,10 +49,10 @@ const MovieSchedule = () => {
               <p>{cinema.location}</p>
             </div>
             <a
-              href={`/tickets/${cinema.name}`}
+              href={`${pathname}/tickets/${cinema.name}`}
               className="theme-btn1 linkstylenone"
             >
-              Select
+              Chọn
             </a>
           </div>
         ))}

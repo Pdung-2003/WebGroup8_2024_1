@@ -68,11 +68,11 @@
   color: var(--col1);
 }
 
-.movie-page .top .banner .left .movie-details .movie-halls{
+.movie-page .top .banner .left .movie-details .movie-formats{
   display: flex;
   gap: 10px;
 }
-.movie-page .top .banner .left .movie-details .movie-halls p {
+.movie-page .top .banner .left .movie-details .movie-formats p {
   background-color: rgba(255, 255, 255, 0.866);
   color: black;
   padding: 5px 10px;
