@@ -12,7 +12,8 @@ const Ticket = sequelize.define('Ticket', {
     price: { type: DataTypes.DECIMAL(10, 2) },
     status: { type: DataTypes.ENUM('unused', 'used') }
 }, {
-    tableName: 'Ticket',
+    tableName: 'ticket',
+    schema: 'public',
     timestamps: false
 });
 

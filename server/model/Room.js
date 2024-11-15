@@ -7,7 +7,8 @@ const Room = sequelize.define('Room', {
     cinema_id: { type: DataTypes.INTEGER },
     room_name: { type: DataTypes.STRING }
 }, {
-    tableName: 'Room',
+    tableName: 'room',
+    schema: 'public',
     timestamps: false
 });
 

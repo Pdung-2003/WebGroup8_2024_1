@@ -8,7 +8,8 @@ const MembershipCard = sequelize.define('MembershipCard', {
     points_accumulated: { type: DataTypes.INTEGER },
     is_activated: { type: DataTypes.BOOLEAN }
 }, {
-    tableName: 'Membership_cards',
+    tableName: 'membership_cards',
+    schema: 'public',
     timestamps: false
 });
 

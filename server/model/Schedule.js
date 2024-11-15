@@ -12,7 +12,8 @@ const Schedule = sequelize.define('Schedule', {
     start_time: { type: DataTypes.DATE },
     end_time: { type: DataTypes.DATE }
 }, {
-    tableName: 'Schedule',
+    tableName: 'schedule',
+    schema: 'public',
     timestamps: false
 });
 
