@@ -10,7 +10,8 @@ const Booking = sequelize.define('Booking', {
     total_price: { type: DataTypes.DECIMAL(10, 2) },
     booking_date: { type: DataTypes.DATE }
 }, {
-    tableName: 'Booking',
+    tableName: 'booking',
+    schema: 'public',
     timestamps: false
 });
 

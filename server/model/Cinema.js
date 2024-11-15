@@ -9,7 +9,8 @@ const Cinema = sequelize.define('Cinema', {
     city: { type: DataTypes.STRING(100) },
     state: { type: DataTypes.STRING(100) }
 }, {
-    tableName: 'Cinemas',
+    tableName: 'cinemas',
+    schema: 'public',
     timestamps: false
 });
 
