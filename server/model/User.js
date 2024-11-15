@@ -8,7 +8,8 @@ const User = sequelize.define('User', {
     tel: { type: DataTypes.STRING(15) },
     password: { type: DataTypes.STRING(255), allowNull: false }
 }, {
-    tableName: 'User',
+    tableName: 'user',
+    schema: 'public',
     timestamps: false
 });
 

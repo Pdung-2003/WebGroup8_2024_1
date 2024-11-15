@@ -8,7 +8,8 @@ const Coupon = sequelize.define('Coupon', {
     user_id: { type: DataTypes.INTEGER },
     expiry_date: { type: DataTypes.DATE }
 }, {
-    tableName: 'Coupon',
+    tableName: 'coupon',
+    schema: 'public',
     timestamps: false
 });
 

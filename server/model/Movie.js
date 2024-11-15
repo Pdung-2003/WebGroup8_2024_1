@@ -11,7 +11,8 @@ const Movie = sequelize.define('Movie', {
     duration: { type: DataTypes.INTEGER },
     release_date: { type: DataTypes.DATE }
 }, {
-    tableName: 'Movies',
+    tableName: 'movies',
+    schema: 'public',
     timestamps: false
 });
 
