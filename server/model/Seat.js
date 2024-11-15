@@ -9,7 +9,8 @@ const Seat = sequelize.define('Seat', {
     seat_status: { type: DataTypes.ENUM('available', 'booked') },
     room_id: { type: DataTypes.INTEGER }
 }, {
-    tableName: 'Seat',
+    tableName: 'seat',
+    schema: 'public',
     timestamps: false
 });
 
