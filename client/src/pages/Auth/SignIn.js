@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import logo from "../../assets/logo.png";
+import {signIn} from "../../function/auth";
 import "./Auth.css";
 
 
@@ -21,6 +22,7 @@ export default function SignIn() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log("Form submitted");
         const validationErrors = {};
 
         if (!formData.email) validationErrors.email = "Email is required";
@@ -30,27 +32,18 @@ export default function SignIn() {
             setErrors(validationErrors);
             return;
         }
-    };
 
-    const checkLogin = async () => {
-        try {
-            const response = await fetch(`${process.env.REACT_APP_BACKEND_API}/auth/checklogin`, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                credentials: "include",
-            });
-            const result = await response.json();
-
-            if (response.ok) {
-                window.location.href = "/";
-            } else {
-            }
-        } catch (error) {
+        const result = await signIn(formData);
+        if (result.success) {
+            console.log("Sign In success");
+            console.log(result.token);
+            localStorage.setItem("token", result.token);
             window.location.href = "/";
-        }
+        } else {
+            toast.error(result.error);
+        }  
     };
+
 
     return (
         <div className="auth-out">
