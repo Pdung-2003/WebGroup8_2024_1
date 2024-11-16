@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import logo from "../../assets/logo.png";
+import { signUp } from "../../function/auth";
 import "./Auth.css";
 
 
@@ -34,6 +35,14 @@ export default function Signup() {
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors);
             return;
+        }
+
+        const result = await signUp(formData);
+        if (result.success) {
+            toast.success("Registration successful! Please log in.");
+            window.location.href = "/auth/signin";
+        } else {
+            toast.error(result.error);
         }
     };
 
