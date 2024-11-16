@@ -32,12 +32,25 @@ router.post('/signin', async (req, res) => {
                 error: 'User not found!'
             })
         }
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+        if (!isPasswordValid) {
+            return res.status(401).json({ error: 'Invalid password' });
+        }
         const token = jwt.sign(
             {userId: user.user_id},
             process.env.JWT_SECRET,
             {expiresIn: '1h'}
         );
-        res.json({token});
+        res.json({
+            success: true,
+            message: 'Logged in successfully',
+            token,
+            user: { 
+                id: user.user_id,
+                name: user.name,
+                email: user.email
+            }
+        });
     } catch (error) {
         res.status(500).json({
             error: error.message
