@@ -7,6 +7,7 @@ import About from './pages/About';
 import MovieDetails from './pages/MovieDetails/MovieDetails';
 import Tickets from './pages/MovieDetails/Tickets/Tickets';
 import './App.css';
+import PaymentPage from './pages/Payment';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
             <Route path="/about" element={<About />} />
             <Route path="/movies/:id" element={<MovieDetails />} />
             <Route path="/movies/:id/tickets/:id" element={<Tickets />} />
+            <Route path="/payment" element={<PaymentPage/>} />
         </Routes>
       </>
   );
