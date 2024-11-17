@@ -4012,7 +4012,7 @@ const Tickets = () => {
             </h3>
           </div>
 
-          <a href="/" className="theme-btn1 linkstylenone">
+          <a href={`/payment/`} className="theme-btn1 linkstylenone">
             Continue
           </a>
         </div>
