@@ -9,7 +9,7 @@ router.post('/', async (req, res) => {
         const newRoom = await Room.create({ cinema_id, room_name });
         res.status(201).json(newRoom);
     } catch (error) {
-        console.error(error);  // Log lỗi chi tiết
+        console.error(error);  
         res.status(500).json({ error: "Internal Server Error" });
     }
 });
@@ -36,6 +36,18 @@ router.get('/:id', async (req, res) => {
         }
     } catch (error) {
         res.status(500).json({ error: 'Failed to retrieve room' });
+    }
+});
+
+// FIND all room by the Cinema ID
+router.get('/cinema/:cinema_id', async (req, res) => {
+    try {
+        const rooms = await Room.findAll({
+            where: { cinema_id: req.params.cinema_id }
+        });
+        res.status(200).json(rooms);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to retrieve rooms' });
     }
 });
 
