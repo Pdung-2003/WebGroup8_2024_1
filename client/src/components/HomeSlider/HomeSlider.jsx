@@ -6,25 +6,34 @@ import "swiper/css/pagination";
 
 import { Keyboard, Mousewheel, Navigation, Pagination } from "swiper/modules";
 
-const width = window.innerWidth;
-const height = window.innerHeight;
 export const HomeSlider = () => {
   const banners = [
     {
       imgUrl:
-        "https://media.lottecinemavn.com/Media/WebAdmin/95627345602649a0a2e6c1c99eba81c3.jpg",
+        "https://bhdstar.vn/wp-content/uploads/2024/11/referenceSchemeHeadOfficeallowPlaceHoldertrueheight1069ldapp-19.jpg",
     },
     {
       imgUrl:
-        "https://media.lottecinemavn.com/Media/WebAdmin/de3fd720216e47ba9c466549e7789976.jpg",
+        "https://bhdstar.vn/wp-content/uploads/2024/11/referenceSchemeHeadOfficeallowPlaceHoldertrueheight1069ldapp-18.jpg",
+    },
+    {
+      imgUrl:
+        "https://bhdstar.vn/wp-content/uploads/2024/11/referenceSchemeHeadOfficeallowPlaceHoldertrueheight1069ldapp-8.jpg",
+    },
+    {
+      imgUrl:
+        "https://bhdstar.vn/wp-content/uploads/2024/11/referenceSchemeHeadOfficeallowPlaceHoldertrueheight1069ldapp-2.jpg",
     },
   ];
 
   return (
     <Swiper
       cssMode={true}
+      loop={true}
+      pagination={{
+        clickable: true,
+      }}
       navigation={true}
-      pagination={true}
       mousewheel={true}
       keyboard={true}
       modules={[Navigation, Pagination, Mousewheel, Keyboard]}
@@ -33,15 +42,15 @@ export const HomeSlider = () => {
       {banners.map((banner, index) => {
         return (
           <SwiperSlide key={index}>
-            <img
-              src={banner.imgUrl}
-              alt=""
-              width={width}
-              height={height / 2}
-              style={{
-                objectFit: "cover",
-              }}
-            />
+            <div className="relative w-full h-[300px] md:h-[400px] lg:h-[600px]">
+              <a href="/movies/1">
+                <img
+                  src={banner.imgUrl}
+                  alt=""
+                  className="w-full h-full object-cover"
+                />
+              </a>
+            </div>
           </SwiperSlide>
         );
       })}

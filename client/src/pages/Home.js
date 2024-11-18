@@ -1,11 +1,17 @@
 import {HomeSlider} from "../components/HomeSlider/HomeSlider"
 import MovieCarousel from "../components/MovieCarousel/MovieCarousel"
+import { NowShowing } from "../components/MoviePagination/NowShowing"
 
 export default function Home() {
   return (
-      <main >
-        <HomeSlider/>
-        <MovieCarousel/>
+      <main>
+        <div className="container">
+          <HomeSlider/>
+          <div className="md:px-24">
+            <NowShowing/>
+            <MovieCarousel/>
+          </div>
+        </div>
       </main>
   )
 }

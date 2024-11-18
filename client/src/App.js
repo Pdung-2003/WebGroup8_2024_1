@@ -8,6 +8,7 @@ import MovieDetails from './pages/MovieDetails/MovieDetails';
 import Tickets from './pages/MovieDetails/Tickets/Tickets';
 import './App.css';
 import PaymentPage from './pages/Payment';
+import Footer from './components/Footer/Footer';
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
             <Route path="/movies/:id/tickets/:id" element={<Tickets />} />
             <Route path="/payment" element={<PaymentPage/>} />
         </Routes>
+        <Footer />
       </>
   );
 };
