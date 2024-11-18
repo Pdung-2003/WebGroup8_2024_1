@@ -1,9 +1,18 @@
 import { NavLink } from "react-router-dom";
 import { BiUserCircle, BiSearch } from "react-icons/bi"
+import { isSignedIn } from "../../function/auth"
 import { RiArrowDropDownFill } from "react-icons/ri"
 import "./Navbar.css"
 
 const Navbar = () => {
+
+  const signedIn = isSignedIn();
+
+  const handleLogout = () => {
+      localStorage.removeItem("token");
+      window.location.href = "/";
+  };
+
   return (
     <nav>
       <div className="left">
@@ -18,10 +27,18 @@ const Navbar = () => {
           Choose Location
           <RiArrowDropDownFill className="drop-icon" />
         </p>
-        <NavLink to="/" className="theme-btn1 linkstylenone">Logout</NavLink>
-        <NavLink to="/" className="linkstylenone">
-          <BiUserCircle className="theme-icon1" />
-        </NavLink>
+        {signedIn ? (
+          <>
+              <button onClick={handleLogout} className="theme-btn1 linkstylenone">Logout</button>
+              <NavLink to="/" className="linkstylenone">
+                  <BiUserCircle className="theme-icon1" />
+              </NavLink>
+          </>
+        ) : (
+          <NavLink to="/auth/signin" className="theme-btn1 linkstylenone">
+              Login
+          </NavLink>
+        )}
       </div>
     </nav>
   );
