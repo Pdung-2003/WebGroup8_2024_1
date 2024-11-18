@@ -1,46 +1,72 @@
-import { NavLink } from "react-router-dom";
-import { BiUserCircle, BiSearch } from "react-icons/bi"
-import { isSignedIn } from "../../function/auth"
-import { RiArrowDropDownFill } from "react-icons/ri"
-import "./Navbar.css"
+import React, { useEffect, useState } from "react";
+import { isSignedIn } from "../../function/auth";
+import logo from "../../assets/logo.png";
 
 const Navbar = () => {
+  // const signedIn = isSignedIn();
+  const signedIn = false;
+  const [top, setTop] = useState(true);
 
-  const signedIn = isSignedIn();
+  useEffect(() => {
+    const scrollHandler = () => {
+      window.scrollY > 10 ? setTop(false) : setTop(true)
+    };
+    window.addEventListener('scroll', scrollHandler);
+    return () => window.removeEventListener('scroll', scrollHandler);
+  }, [top]);
 
   const handleLogout = () => {
-      localStorage.removeItem("token");
-      window.location.href = "/";
+    localStorage.removeItem("token");
+    window.location.href = "/";
   };
 
   return (
-    <nav>
-      <div className="left">
-        <div className="logo">LOGO</div>
-        <div className="search-box">
-          <BiSearch className="search-btn" />
-          <input type="text" placeholder="Search For a Movie" />
+    <header className={`sticky top-0 z-50 ${!top && "drop-shadow-md"}`}>
+      <nav className="border-2">
+        <div className="container bg-base-100 px-24">
+          <div className="navbar">
+            <div className="navbar-start">
+              <a href="/" className="flex flex-row items-center justify-start">
+                <div class="w-12">
+                  <img src={logo} alt="Logo" className="img" />
+                </div>
+                <div className="mx-1 be-vietnam-pro-black tracking-widest text-3xl">CINEMAX</div>
+              </a>
+            </div>
+            <div className="navbar-end">
+              {signedIn ? (
+                <>
+                  <div class="avatar">
+                    <div class="w-9 rounded-full">
+                      <img
+                        src="https://bhdstar.vn/wp-content/assets/loodo/no-user.jpg"
+                        alt="Avatar"
+                      />
+                    </div>
+                  </div>
+                  <span className="mx-2">Username</span>
+                  <span>|</span>
+                  <a
+                    href="/auth/signin"
+                    className="mx-2 be-vietnam-pro-bold"
+                    onClick={handleLogout}
+                  >
+                    Đăng xuất
+                  </a>
+                </>
+              ) : (
+                <a
+                  href="/auth/signin"
+                  className="btn btn-sm btn-primary text-white"
+                >
+                  Đăng nhập
+                </a>
+              )}
+            </div>
+          </div>
         </div>
-      </div>
-      <div className="right">
-        <p className="dropdown">
-          Choose Location
-          <RiArrowDropDownFill className="drop-icon" />
-        </p>
-        {signedIn ? (
-          <>
-              <button onClick={handleLogout} className="theme-btn1 linkstylenone">Logout</button>
-              <NavLink to="/" className="linkstylenone">
-                  <BiUserCircle className="theme-icon1" />
-              </NavLink>
-          </>
-        ) : (
-          <NavLink to="/auth/signin" className="theme-btn1 linkstylenone">
-              Login
-          </NavLink>
-        )}
-      </div>
-    </nav>
+      </nav>
+    </header>
   );
 };
 
