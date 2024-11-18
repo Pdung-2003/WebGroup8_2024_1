@@ -1,10 +1,8 @@
 .ticket-page .head {
-  background-color: var(--col2);
   padding: 10px;
 }
 
 .ticket-page {
-  background-color: rgb(228, 228, 228);
   min-height: 100vh;
   width: 100%;
 }
@@ -41,10 +39,8 @@
 
 .select-seat .indicators {
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 20px;
   margin: 20px;
 }
 
@@ -52,7 +48,6 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 10px;
 }
 
 .select-seat .indicators div span {
