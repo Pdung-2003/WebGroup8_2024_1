@@ -21,7 +21,8 @@ app.use('/movie', movieRoutes);
 app.use('/user', userRoutes);
 app.use('/auth', authRoutes);
 app.use('/schedule', scheduleRoutes);
-
+app.use('/booking', bookingRoutes);
+app.use('/ticket', ticketRoutes);
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
