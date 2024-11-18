@@ -30,27 +30,27 @@ const MovieSchedule = () => {
   };
 
   return (
-    <div className="schedule-section">
-      <h2 className="schedule-title">Lịch chiếu</h2>
+    <div className="schedule-section md:px-24">
+      <h2 className="schedule-title be-vietnam-pro-bold text-primary">Lịch chiếu</h2>
       <div className="schedule-date-picker">
         <DatePicker
           getSelectedDay={selectedDay}
           endDate={100}
           selectDate={new Date()}
           labelFormat={"MMMM"}
-          color={"rgb(248, 68, 100)"}
+          color={"#d1082a"}
         />
       </div>
       <div className="schedule-container">
         {movie.cinemas.map((cinema, index) => (
           <div className="schedule-item" key={index}>
             <div>
-              <h3>{cinema.name}</h3>
+              <h3 className="be-vietnam-pro-semibold">{cinema.name}</h3>
               <p>{cinema.location}</p>
             </div>
             <a
               href={`${pathname}/tickets/${cinema.name}`}
-              className="theme-btn1 linkstylenone"
+              className="btn btn-sm btn-primary text-white"
             >
               Chọn
             </a>

@@ -1,96 +1,120 @@
-"use client";
-
 import React from "react";
 import "swiper/css";
 import "swiper/css/pagination";
+import "swiper/css/navigation"; // Import navigation styles
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
+import {  Autoplay, Pagination, Navigation } from "swiper/modules"; // Import Navigation
 
-import MovieCard from "../Movie/MovieCard"
+import MovieCard from "../Movie/MovieCard";
 
 const MovieCarousel = () => {
   const Movies = [
-    {
-      title: "Venom",
-      imageUrl:
-        "https://media.lottecinemavn.com/Media/MovieFile/MovieImg/202410/11537_103_100003.jpg",
-      _id: "1",
-      rating: 8.5,
-      type: "Science Fiction/Action",
-    },
-    {
-      title: "Red One",
-      imageUrl:
-        "https://media.lottecinemavn.com/Media/MovieFile/MovieImg/202411/11597_103_100003.jpg",
-      _id: "2",
-      rating: 8.5,
-      type: "Science Fiction/Action",
-    },
-    {
-      title: "Tee Yod",
-      imageUrl:
-        "https://media.lottecinemavn.com/Media/MovieFile/MovieImg/202410/11567_103_100008.jpg",
-      _id: "3",
-      rating: 8.5,
-      type: "Horror",
-    },
-    {
-      title: "My Hero Academia",
-      imageUrl:
-        "https://media.lottecinemavn.com/Media/MovieFile/MovieImg/202411/11613_103_100001.jpg",
-      _id: "4",
-      rating: 8.5,
-      type: "Anime",
-    },
-    {
-      title: "Co dau hao mon",
-      imageUrl:
-        "https://media.lottecinemavn.com/Media/MovieFile/MovieImg/202410/11556_103_100003.jpg",
-      _id: "5",
-      rating: 8.5,
-      type: "Comedy",
-    },
-    {
-      title: "Ngay xua co mot chuyen tinh",
-      imageUrl:
-        "https://media.lottecinemavn.com/Media/MovieFile/MovieImg/202410/11188_103_100006.jpg",
-      _id: "6",
-      rating: 8.5,
-      type: "Romantic",
-    },
+      {
+        title: "MUFASA: THE LION KING: VUA SƯ TỬ",
+        imageUrl: "https://bhdstar.vn/wp-content/uploads/2024/11/referenceSchemeHeadOfficeallowPlaceHoldertrueheight700ldapp-22.jpg",
+        _id: "",
+        genre: "Family"
+      },
+      {
+        title: "THE LORD OF THE RINGS: THE WAR OF THE ROHIRRIM",
+        imageUrl: "https://bhdstar.vn/wp-content/uploads/2024/11/referenceSchemeHeadOfficeallowPlaceHoldertrueheight700ldapp-23.jpg",
+        _id: "",
+        genre: "Action"
+      },
+      {
+        title: "KRAVEN THE HUNTER: THỢ SĂN THỦ LĨNH",
+        imageUrl: "https://bhdstar.vn/wp-content/uploads/2024/11/referenceSchemeHeadOfficeallowPlaceHoldertrueheight700ldapp-17.jpg",
+        _id: "",
+        genre: "Action"
+      },
+      {
+        title: "MOANA 2: HÀNH TRÌNH CỦA MOANA",
+        imageUrl: "https://bhdstar.vn/wp-content/uploads/2024/10/referenceSchemeHeadOfficeallowPlaceHoldertrueheight700ldapp-2.png",
+        _id: "",
+        genre: "Animation"
+      },
+      {
+        title: "WOODWALKERS: NGƯỜI HÓA THÚ",
+        imageUrl: "https://bhdstar.vn/wp-content/uploads/2024/10/referenceSchemeHeadOfficeallowPlaceHoldertrueheight700ldapp-33.jpg",
+        _id: "",
+        genre: "Fantasy"
+      },
+      {
+        title: "THÁM TỬ KIÊN: KỲ ÁN KHÔNG ĐẦU",
+        imageUrl: "https://bhdstar.vn/wp-content/uploads/2024/09/referenceSchemeHeadOfficeallowPlaceHoldertrueheight700ldapp-5.jpg",
+        _id: "",
+        genre: "Thriller"
+      },
+      {
+        title: "SONIC THE HEDGEHOG: NHÍM SONIC 3",
+        imageUrl: "https://bhdstar.vn/wp-content/uploads/2024/08/referenceSchemeHeadOfficeallowPlaceHoldertrueheight700ldapp-9.png",
+        _id: "",
+        genre: "Action"
+      },
+      {
+        title: "CÔNG TỬ BẠC LIÊU",
+        imageUrl: "https://bhdstar.vn/wp-content/uploads/2024/11/referenceSchemeHeadOfficeallowPlaceHoldertrueheight700ldapp-19.jpg",
+        _id: "",
+        genre: "Drama"
+      },
+      {
+        title: "NHÀ GIA TIÊN",
+        imageUrl: "https://bhdstar.vn/wp-content/uploads/2024/11/referenceSchemeHeadOfficeallowPlaceHoldertrueheight700ldapp.png",
+        _id: "",
+        genre: "Mystery"
+      },
+      {
+        title: "OPERATION UNDEAD: CHIẾN ĐỊA TỬ THI",
+        imageUrl: "https://bhdstar.vn/wp-content/uploads/2024/11/referenceSchemeHeadOfficeallowPlaceHoldertrueheight700ldapp-21.jpg",
+        _id: "",
+        genre: "Horror"
+      }
   ];
 
   return (
-    <div className="sliderout">
+    <div className="sliderout space-y-6  py-6">
+      <div className="flex w-full justify-center items-center my-4">
+        <div className="badge badge-lg badge-primary h-12">
+          <h1 className="text-2xl font-bold text-center uppercase px-6 py-2">
+            Phim sắp chiếu
+          </h1>
+        </div>
+      </div>
       <Swiper
         slidesPerView={1}
-        spaceBetween={1}
+        spaceBetween={5}
+        loop={true}
+        autoplay={{
+          delay: 2000,
+          disableOnInteraction: false,
+        }}
         pagination={{
           clickable: true,
         }}
+        navigation={true}
         breakpoints={{
           "@0.00": {
             slidesPerView: 1,
-            spaceBetween: 2,
+            spaceBetween: 5,
           },
           "@0.75": {
             slidesPerView: 2,
-            spaceBetween: 2,
+            spaceBetween: 5,
           },
           "@1.00": {
             slidesPerView: 3,
-            spaceBetween: 2,
+            spaceBetween: 5,
           },
           "@1.50": {
-            slidesPerView: 6,
-            spaceBetween: 2,
+            slidesPerView: 5,
+            spaceBetween: 5,
           },
         }}
-        modules={[Pagination]}
+        modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       >
         {Movies.map((movie) => (
-          <SwiperSlide key={movie._id}>
+          <SwiperSlide key={movie._id} className="mb-12">
             <MovieCard {...movie} />
           </SwiperSlide>
         ))}
