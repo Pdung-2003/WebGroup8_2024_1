@@ -36,7 +36,6 @@ export default function SignIn() {
         const result = await signIn(formData);
         if (result.success) {
             console.log("Sign In success");
-            console.log(result.token);
             localStorage.setItem("token", result.token);
             window.location.href = "/";
         } else {
