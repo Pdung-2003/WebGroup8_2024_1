@@ -9,7 +9,14 @@ const Movie = sequelize.define('Movie', {
     title: { type: DataTypes.STRING },
     description: { type: DataTypes.TEXT },
     duration: { type: DataTypes.INTEGER },
-    release_date: { type: DataTypes.DATE }
+    release_date: { type: DataTypes.DATE },
+    potrait_poster_url: { type: DataTypes.TEXT },
+    wide_poster_url: { type: DataTypes.TEXT },
+    trailer_url: { type: DataTypes.TEXT },
+    rating: { type: DataTypes.FLOAT },
+    age_limit: { type: DataTypes.TEXT }, 
+    type: { type: DataTypes.TEXT }, 
+    formats: { type: DataTypes.ARRAY(DataTypes.TEXT) }
 }, {
     tableName: 'movies',
     schema: 'public',
