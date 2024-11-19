@@ -6,7 +6,10 @@ const cinemaRoutes = require('./routes/cinemaRoutes');
 const roomRoutes = require('./routes/roomRoutes'); 
 const movieRoutes = require('./routes/movieRoutes');
 const userRoutes = require('./routes/userRoutes');
+const bookingRoutes = require('./routes/bookingRoutes');
 const scheduleRoutes = require('./routes/scheduleRoutes');
+const ticketRoutes = require('./routes/ticketRoutes');
+const genreRoutes = require('./routes/genreRoutes');
 const { router: authRoutes, authenticateToken } = require('./routes/authRoutes');
 
 const app = express();
@@ -23,6 +26,8 @@ app.use('/auth', authRoutes);
 app.use('/schedule', scheduleRoutes);
 app.use('/booking', bookingRoutes);
 app.use('/ticket', ticketRoutes);
+app.use('/genre', genreRoutes);
+
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
