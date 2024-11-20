@@ -34,7 +34,7 @@ const Tickets = () => {
 
                       {
                         type: "seat",
-                        status: "not-available",
+                        status: "booked",
                         seat_id: "3",
                       },
                       {
@@ -44,7 +44,7 @@ const Tickets = () => {
                       },
                       {
                         type: "seat",
-                        status: "not-available",
+                        status: "booked",
                         seat_id: "5",
                       },
                       {
@@ -54,7 +54,7 @@ const Tickets = () => {
                       },
                       {
                         type: "seat",
-                        status: "not-available",
+                        status: "booked",
                         seat_id: "7",
                       },
                       {
@@ -69,7 +69,7 @@ const Tickets = () => {
                       },
                       {
                         type: "seat",
-                        status: "not-available",
+                        status: "booked",
                         seat_id: "10",
                       },
                     ],
@@ -84,7 +84,7 @@ const Tickets = () => {
                       },
                       {
                         type: "seat",
-                        status: "not-available",
+                        status: "booked",
                         seat_id: "2",
                       },
 
@@ -95,7 +95,7 @@ const Tickets = () => {
                       },
                       {
                         type: "seat",
-                        status: "not-available",
+                        status: "booked",
                         seat_id: "4",
                       },
                       {
@@ -120,12 +120,12 @@ const Tickets = () => {
                       },
                       {
                         type: "seat",
-                        status: "not-available",
+                        status: "booked",
                         seat_id: "9",
                       },
                       {
                         type: "seat",
-                        status: "not-available",
+                        status: "booked",
                         seat_id: "10",
                       },
                     ],
@@ -429,7 +429,7 @@ const Tickets = () => {
                       },
                       {
                         type: "seat",
-                        status: "available",
+                        status: "booked",
                         seat_id: "10",
                       },
                     ],
@@ -1001,7 +1001,7 @@ const Tickets = () => {
 
                       {
                         type: "seat",
-                        status: "not-available",
+                        status: "booked",
                         seat_id: "3",
                       },
                       {
@@ -1011,7 +1011,7 @@ const Tickets = () => {
                       },
                       {
                         type: "seat",
-                        status: "not-available",
+                        status: "booked",
                         seat_id: "5",
                       },
                       {
@@ -1021,7 +1021,7 @@ const Tickets = () => {
                       },
                       {
                         type: "seat",
-                        status: "not-available",
+                        status: "booked",
                         seat_id: "7",
                       },
                       {
@@ -1036,7 +1036,7 @@ const Tickets = () => {
                       },
                       {
                         type: "seat",
-                        status: "not-available",
+                        status: "booked",
                         seat_id: "10",
                       },
                     ],
@@ -1051,7 +1051,7 @@ const Tickets = () => {
                       },
                       {
                         type: "seat",
-                        status: "not-available",
+                        status: "booked",
                         seat_id: "2",
                       },
 
@@ -1062,7 +1062,7 @@ const Tickets = () => {
                       },
                       {
                         type: "seat",
-                        status: "not-available",
+                        status: "booked",
                         seat_id: "4",
                       },
                       {
@@ -1087,12 +1087,12 @@ const Tickets = () => {
                       },
                       {
                         type: "seat",
-                        status: "not-available",
+                        status: "booked",
                         seat_id: "9",
                       },
                       {
                         type: "seat",
-                        status: "not-available",
+                        status: "booked",
                         seat_id: "10",
                       },
                     ],
@@ -1858,7 +1858,7 @@ const Tickets = () => {
                       },
                       {
                         type: "seat",
-                        status: "not-available",
+                        status: "booked",
                         seat_id: "7",
                       },
                       {
@@ -1868,7 +1868,7 @@ const Tickets = () => {
                       },
                       {
                         type: "seat",
-                        status: "not-available",
+                        status: "booked",
                         seat_id: "9",
                       },
                       {
@@ -1894,7 +1894,7 @@ const Tickets = () => {
 
                       {
                         type: "seat",
-                        status: "not-available",
+                        status: "booked",
                         seat_id: "3",
                       },
                       {
@@ -1904,7 +1904,7 @@ const Tickets = () => {
                       },
                       {
                         type: "seat",
-                        status: "not-available",
+                        status: "booked",
                         seat_id: "5",
                       },
                       {
@@ -1919,7 +1919,7 @@ const Tickets = () => {
                       },
                       {
                         type: "seat",
-                        status: "not-available",
+                        status: "booked",
                         seat_id: "8",
                       },
                       {
@@ -1929,7 +1929,7 @@ const Tickets = () => {
                       },
                       {
                         type: "seat",
-                        status: "not-available",
+                        status: "booked",
                         seat_id: "10",
                       },
                     ],
@@ -1968,7 +1968,7 @@ const Tickets = () => {
 
                       {
                         type: "seat",
-                        status: "not-available",
+                        status: "booked",
                         seat_id: "3",
                       },
                       {
@@ -1978,7 +1978,7 @@ const Tickets = () => {
                       },
                       {
                         type: "seat",
-                        status: "not-available",
+                        status: "booked",
                         seat_id: "5",
                       },
                       {
@@ -1988,7 +1988,7 @@ const Tickets = () => {
                       },
                       {
                         type: "seat",
-                        status: "not-available",
+                        status: "booked",
                         seat_id: "7",
                       },
                       {
@@ -2003,7 +2003,7 @@ const Tickets = () => {
                       },
                       {
                         type: "seat",
-                        status: "not-available",
+                        status: "booked",
                         seat_id: "10",
                       },
                     ],
@@ -2018,7 +2018,7 @@ const Tickets = () => {
                       },
                       {
                         type: "seat",
-                        status: "not-available",
+                        status: "booked",
                         seat_id: "2",
                       },
 
@@ -2029,7 +2029,7 @@ const Tickets = () => {
                       },
                       {
                         type: "seat",
-                        status: "not-available",
+                        status: "booked",
                         seat_id: "4",
                       },
                       {
@@ -2054,12 +2054,12 @@ const Tickets = () => {
                       },
                       {
                         type: "seat",
-                        status: "not-available",
+                        status: "booked",
                         seat_id: "9",
                       },
                       {
                         type: "seat",
-                        status: "not-available",
+                        status: "booked",
                         seat_id: "10",
                       },
                     ],
@@ -2935,7 +2935,7 @@ const Tickets = () => {
 
                       {
                         type: "seat",
-                        status: "not-available",
+                        status: "booked",
                         seat_id: "3",
                       },
                       {
@@ -2945,7 +2945,7 @@ const Tickets = () => {
                       },
                       {
                         type: "seat",
-                        status: "not-available",
+                        status: "booked",
                         seat_id: "5",
                       },
                       {
@@ -2955,7 +2955,7 @@ const Tickets = () => {
                       },
                       {
                         type: "seat",
-                        status: "not-available",
+                        status: "booked",
                         seat_id: "7",
                       },
                       {
@@ -2970,7 +2970,7 @@ const Tickets = () => {
                       },
                       {
                         type: "seat",
-                        status: "not-available",
+                        status: "booked",
                         seat_id: "10",
                       },
                     ],
@@ -2985,7 +2985,7 @@ const Tickets = () => {
                       },
                       {
                         type: "seat",
-                        status: "not-available",
+                        status: "booked",
                         seat_id: "2",
                       },
 
@@ -2996,7 +2996,7 @@ const Tickets = () => {
                       },
                       {
                         type: "seat",
-                        status: "not-available",
+                        status: "booked",
                         seat_id: "4",
                       },
                       {
@@ -3021,12 +3021,12 @@ const Tickets = () => {
                       },
                       {
                         type: "seat",
-                        status: "not-available",
+                        status: "booked",
                         seat_id: "9",
                       },
                       {
                         type: "seat",
-                        status: "not-available",
+                        status: "booked",
                         seat_id: "10",
                       },
                     ],
@@ -3792,7 +3792,7 @@ const Tickets = () => {
                       },
                       {
                         type: "seat",
-                        status: "not-available",
+                        status: "booked",
                         seat_id: "7",
                       },
                       {
@@ -3802,7 +3802,7 @@ const Tickets = () => {
                       },
                       {
                         type: "seat",
-                        status: "not-available",
+                        status: "booked",
                         seat_id: "9",
                       },
                       {
@@ -3828,7 +3828,7 @@ const Tickets = () => {
 
                       {
                         type: "seat",
-                        status: "not-available",
+                        status: "booked",
                         seat_id: "3",
                       },
                       {
@@ -3838,7 +3838,7 @@ const Tickets = () => {
                       },
                       {
                         type: "seat",
-                        status: "not-available",
+                        status: "booked",
                         seat_id: "5",
                       },
                       {
@@ -3853,7 +3853,7 @@ const Tickets = () => {
                       },
                       {
                         type: "seat",
-                        status: "not-available",
+                        status: "booked",
                         seat_id: "8",
                       },
                       {
@@ -3863,7 +3863,7 @@ const Tickets = () => {
                       },
                       {
                         type: "seat",
-                        status: "not-available",
+                        status: "booked",
                         seat_id: "10",
                       },
                     ],
@@ -3975,7 +3975,7 @@ const Tickets = () => {
                             {seatIndex + 1}
                           </span>
                         )}
-                        {seat.status === "not-available" && (
+                        {seat.status === "booked" && (
                           <span className="seat-unavailable">
                             {seatIndex + 1}
                           </span>
