@@ -4,8 +4,13 @@ import logo from "../../assets/logo.png";
 
 const Navbar = () => {
   // const signedIn = isSignedIn();
-  const signedIn = false;
+  const [signedIn, setSignedIn] = useState(false);
   const [top, setTop] = useState(true);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setSignedIn(!!token);
+  }, []);
 
   useEffect(() => {
     const scrollHandler = () => {
@@ -17,6 +22,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    setSignedIn(false);
     window.location.href = "/";
   };
 
