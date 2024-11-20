@@ -8,7 +8,7 @@ const MovieDetails = () => {
 
   useEffect(() => {
     const getMovie = async () => {
-      const result = await fetchMovieById(6);
+      const result = await fetchMovieById(7);
       if (result.success) {
         setMovie(result.movie);
       } else {
