@@ -189,4 +189,36 @@ router.get('/:movieId/crew', async (req, res) => {
       }
 });
 
+// GET all movies with status "showing"
+router.get('/status/showing', async (req, res) => {
+    try {
+      const movies = await Movie.findAll({
+        where: {
+          status: 'showing',
+        },
+      });
+  
+      res.status(200).json(movies);
+    } catch (error) {
+      console.error('Error fetching movies with status "showing":', error);
+      res.status(500).json({ message: 'An error occurred while fetching movies.' });
+    }
+  });
+  
+  module.exports = router;
+
+// GET all movies with status "upcoming"
+router.get('/status/upcoming', async (req, res) => {
+    try {
+        const movies = await Movie.findAll({
+            where: {
+                status: 'upcoming'
+                }
+        });
+        res.status(200).json(movies);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 module.exports = router;

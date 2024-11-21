@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { fetchMovieByName, fetchMovieById } from "../../function/movie";
 import MovieSchedule from "./MovieSchedule";
 import "./MovieDetails.css";
 
 const MovieDetails = () => {
+  const { id } = useParams();
   const [movie, setMovie] = useState(null);
 
   useEffect(() => {
     const getMovie = async () => {
-      const result = await fetchMovieById(7);
+      const result = await fetchMovieById(id);
       if (result.success) {
         setMovie(result.movie);
       } else {
@@ -17,7 +19,7 @@ const MovieDetails = () => {
     };
 
     getMovie();
-  }, []);
+  }, [id]);
 
   if (!movie) {
     return <div>Loading...</div>;
