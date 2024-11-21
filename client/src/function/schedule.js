@@ -57,3 +57,43 @@ export const createSchedule = async (scheduleData) => {
         return { success: false, error: "Something went wrong!" };
     }
 };
+
+// Fetch all schedules by cinema_id and movie_id
+export const fetchSchedulesByCinemaAndMovie = async (cinemaId, movieId) => {
+    try {
+        const response = await fetch(`${BASE_URL}/schedule/cinema/${cinemaId}/movie/${movieId}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+        const result = await response.json();
+        if (response.ok) {
+            return { success: true, schedules: result };
+        } else {
+            return { success: false, error: result.error };
+        }
+    } catch (error) {
+        return { success: false, error: "Something went wrong!" };
+    }
+};
+
+export const fetchSchedulesByMovieId = async (movieId) => {
+    try {
+        const response = await fetch(`${BASE_URL}/schedule/movie/${movieId}`, {
+            method: "GET",
+            headers: {
+                "Content-type": "application/json",
+            },
+        });
+        const result = await response.json();
+        if (response.ok) {
+            return { success: true, schedules: result };
+        } else {
+            return { success: false, error: result.error };
+        }
+    } catch (error) {
+        return { success: false, error: "Something went wrong!" };
+    }
+
+}
