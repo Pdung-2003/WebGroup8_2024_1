@@ -17,7 +17,7 @@ const Movie = sequelize.define('Movie', {
     age_limit: { type: DataTypes.TEXT }, 
     type: { type: DataTypes.TEXT }, 
     formats: { type: DataTypes.ARRAY(DataTypes.TEXT)},
-    status: { type: DataTypes.ARRAY(DataTypes.TEXT)} 
+    status: { type: DataTypes.TEXT} 
 }, {
     tableName: 'movies',
     schema: 'public',
