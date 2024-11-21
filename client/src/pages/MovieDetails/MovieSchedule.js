@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { fetchAllCinemas } from "../../function/cinema";
-import { fetchSchedulesByMovieId } from "../../function/schedule";
+import { fetchSchedulesByMovieId, fetchSchedulesByCinemaAndMovie } from "../../function/schedule";
 import DatePicker from "react-horizontal-datepicker";
 import "./MovieSchedule.css";
 
 const MovieSchedule = ({ movieId }) => {
   const pathname = useLocation().pathname;
+  const navigate = useNavigate();
   const [cinemas, setCinemas] = useState([]);
   const [schedules, setSchedules] = useState([]);
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -54,6 +55,21 @@ const MovieSchedule = ({ movieId }) => {
     movieId
   );
 
+  const handleSelectCinema = async (cinema) => {
+    const scheduleResult = await fetchSchedulesByCinemaAndMovie(cinema.cinema_id, movieId);
+    if (scheduleResult.success) {
+      navigate(`${pathname}/tickets/${cinema.cinema_id}`, {
+        state: {
+          cinema,
+          movieId,
+          schedules: scheduleResult.schedules
+        }
+      });
+    } else {
+      console.error(scheduleResult.error);
+    }
+  };
+
   return (
     <div className="schedule-section md:px-24">
       <h2 className="schedule-title be-vietnam-pro-bold text-primary">Lịch chiếu</h2>
@@ -83,8 +99,8 @@ const MovieSchedule = ({ movieId }) => {
                 <p>{cinema.location}</p>
               </div>
               <a
-                href={`${pathname}/tickets/${cinema.cinema_id}`}
                 className="btn btn-sm btn-primary text-white"
+                onClick={() => handleSelectCinema(cinema)}
               >
                 Chọn
               </a>
