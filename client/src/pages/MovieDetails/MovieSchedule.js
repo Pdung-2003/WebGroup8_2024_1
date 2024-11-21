@@ -1,40 +1,60 @@
-import React from "react";
-import { useLocation } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { fetchAllCinemas } from "../../function/cinema";
+import { fetchAllSchedules } from "../../function/schedule";
 import DatePicker from "react-horizontal-datepicker";
 import "./MovieSchedule.css";
 
-const MovieSchedule = () => {
-  const pathname = useLocation().pathname;
-  console.log(pathname);
+const MovieSchedule = ({ movieId }) => {
+  const [cinemas, setCinemas] = useState([]);
+  const [schedules, setSchedules] = useState([]);
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
-  const movie = {
-    date: new Date(),
-    cinemas: [
-      {
-        name: "Cinema 1",
-        location: "Tầng 4 & 5, TTTM The Garden, khu đô thị The Manor, đường Mễ Trì, phường Mỹ Đình 1, quận Nam Từ Liêm, Hà Nội",
-      },
-      {
-        name: "Cinema 2",
-        location: "Tầng 8 của TTTM Vincom, số 2 Phạm Ngọc Thạch, Đống Đa, Hà Nội",
-      },
-      {
-        name: "Cinema 3",
-        location: "Tầng 8, TTTM Discovery - 302 Cầu Giấy , Hà Nội",
-      },
-    ],
+  // Fetch cinemas and schedules from backend
+  useEffect(() => {
+    const getCinemasAndSchedules = async () => {
+      const cinemaResult = await fetchAllCinemas();
+      const scheduleResult = await fetchAllSchedules();
+
+      if (cinemaResult.success) {
+        setCinemas(cinemaResult.cinemas);
+      } else {
+        console.error(cinemaResult.error);
+      }
+
+      if (scheduleResult.success) {
+        setSchedules(scheduleResult.schedules);
+      } else {
+        console.error(scheduleResult.error);
+      }
+    };
+
+    getCinemasAndSchedules();
+  }, []);
+
+  // Filter schedules by selected date and movie ID
+  const filterSchedulesByDateAndMovie = (date, movieId) => {
+    return schedules.filter(
+      (schedule) =>
+        new Date(schedule.start_time).toDateString() === date.toDateString() &&
+        schedule.movie_id === movieId
+    );
   };
 
-  const selectedDay = (val) => {
-    console.log(val);
+  const handleDateSelect = (date) => {
+    setSelectedDate(new Date(date));
   };
+
+  const schedulesForSelectedDateAndMovie = filterSchedulesByDateAndMovie(
+    selectedDate,
+    movieId
+  );
 
   return (
     <div className="schedule-section md:px-24">
       <h2 className="schedule-title be-vietnam-pro-bold text-primary">Lịch chiếu</h2>
       <div className="schedule-date-picker">
         <DatePicker
-          getSelectedDay={selectedDay}
+          getSelectedDay={handleDateSelect}
           endDate={100}
           selectDate={new Date()}
           labelFormat={"MMMM"}
@@ -42,20 +62,34 @@ const MovieSchedule = () => {
         />
       </div>
       <div className="schedule-container">
-        {movie.cinemas.map((cinema, index) => (
-          <div className="schedule-item" key={index}>
-            <div>
-              <h3 className="be-vietnam-pro-semibold">{cinema.name}</h3>
-              <p>{cinema.location}</p>
+        {cinemas.map((cinema) => {
+          const cinemaSchedules = schedulesForSelectedDateAndMovie.filter(
+            (schedule) => schedule.cinema_id === cinema.cinema_id
+          );
+
+          return (
+            <div className="schedule-item" key={cinema.cinema_id}>
+              <div>
+                <h3 className="be-vietnam-pro-semibold">{cinema.name}</h3>
+                <p>{cinema.location}</p>
+              </div>
+              <div className="schedule-times">
+                {cinemaSchedules.length > 0 ? (
+                  cinemaSchedules.map((schedule) => (
+                    <div key={schedule.schedule_id}>
+                      <p>
+                        {new Date(schedule.start_time).toLocaleTimeString()} -{" "}
+                        {new Date(schedule.end_time).toLocaleTimeString()}
+                      </p>
+                    </div>
+                  ))
+                ) : (
+                  <p>Không có lịch chiếu</p>
+                )}
+              </div>
             </div>
-            <a
-              href={`${pathname}/tickets/${cinema.name}`}
-              className="btn btn-sm btn-primary text-white"
-            >
-              Chọn
-            </a>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
