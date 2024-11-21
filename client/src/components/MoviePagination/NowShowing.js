@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import MovieCard from "../Movie/MovieCard";
 import { fetchShowingMovies, fetchGenreById } from "../../function/movie";
 
@@ -8,6 +9,7 @@ const ITEMS_PER_PAGE = 10;
 export const NowShowing = () => {
   const [nowShowingMovies, setNowShowingMovies] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getNowShowingMovies = async () => {
@@ -48,6 +50,10 @@ export const NowShowing = () => {
     }
   };
 
+  const handleCardClick = (id) => {
+    navigate(`/movies/${id}`); // Navigate to the MovieDetails page with the ID
+  };
+  
   const currentMovies = nowShowingMovies.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
     currentPage * ITEMS_PER_PAGE
@@ -64,7 +70,11 @@ export const NowShowing = () => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
         {currentMovies.map((movie) => (
-          <div key={movie.id} className="flex items-center justify-center">
+          <div 
+            key={movie.id} 
+            className="flex items-center justify-center"
+            onClick={() => handleCardClick(movie._id)}
+          >
             <MovieCard {...movie} />
           </div>
         ))}
