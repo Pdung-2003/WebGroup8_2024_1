@@ -9,11 +9,6 @@ export const PaymentPage = () => {
     language: "Vietnamese",
     type: "Science Fiction/Action",
     cost: "200.000VND",
-    screens: [
-      { name: "Screen 1", location: "Lotte Cinema, Hanoi" },
-      { name: "Screen 2", location: "Lotte Cinema, Hanoi" },
-      { name: "Screen 3", location: "Lotte Cinema, Hanoi" },
-    ],
   };
 
   const [selectedScreen, setSelectedScreen] = useState("");
@@ -55,22 +50,6 @@ export const PaymentPage = () => {
           </p>
         </div>
 
-        {/* Screen Selection Section */}
-        <div className="screen-selection">
-          <h2>Chọn màn hình chiếu</h2>
-          <select
-            value={selectedScreen}
-            onChange={(e) => setSelectedScreen(e.target.value)}
-            className="screen-select"
-          >
-            <option value="">-- Chọn màn hình --</option>
-            {movie.screens.map((screen, index) => (
-              <option key={index} value={screen.name}>
-                {screen.name} - {screen.location}
-              </option>
-            ))}
-          </select>
-        </div>
       </div>
 
       {/* Payment Button */}
