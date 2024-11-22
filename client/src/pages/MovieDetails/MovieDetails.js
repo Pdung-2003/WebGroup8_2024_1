@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchMovieByName, fetchMovieById } from "../../function/movie";
+import { fetchMovieById } from "../../function/movie";
 import MovieSchedule from "./MovieSchedule";
 import "./MovieDetails.css";
 
@@ -113,7 +113,7 @@ const MovieDetails = () => {
       </div>
 
       <div id="movie-schedule">
-        <MovieSchedule />
+        <MovieSchedule movieId={id} />
       </div>
     </div>
   );
