@@ -106,4 +106,43 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
+// GET all schedules by cinema_id and movie_id
+router.get('/cinema/:cinema_id/movie/:movie_id', async (req, res) => {
+    const { cinema_id, movie_id } = req.params;
+    try {
+        const schedules = await Schedule.findAll({
+            where: {
+                cinema_id,
+                movie_id
+            }
+        });
+        if (schedules.length > 0) {
+            res.status(200).json(schedules);
+        } else {
+            res.status(404).json({ error: 'No schedules found for the specified cinema and movie' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// GET all schedules by movie_id
+router.get('/movie/:movie_id', async (req, res) => {
+    const { movie_id } = req.params;
+    try {
+        const schedules = await Schedule.findAll({
+            where: {
+                movie_id
+            }
+        });
+        if (schedules.length > 0) {
+            res.status(200).json(schedules);
+        } else {
+            res.status(404).json({ error: 'No schedules found for the specified cinema and movie' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 module.exports = router;

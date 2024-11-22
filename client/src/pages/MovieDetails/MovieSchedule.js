@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from 'react-router-dom';
 import { fetchAllCinemas } from "../../function/cinema";
-import { fetchAllSchedules } from "../../function/schedule";
+import { fetchSchedulesByMovieId, fetchSchedulesByCinemaAndMovie } from "../../function/schedule";
 import DatePicker from "react-horizontal-datepicker";
 import "./MovieSchedule.css";
 
 const MovieSchedule = ({ movieId }) => {
+  const pathname = useLocation().pathname;
+  const navigate = useNavigate();
   const [cinemas, setCinemas] = useState([]);
   const [schedules, setSchedules] = useState([]);
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -13,7 +16,7 @@ const MovieSchedule = ({ movieId }) => {
   useEffect(() => {
     const getCinemasAndSchedules = async () => {
       const cinemaResult = await fetchAllCinemas();
-      const scheduleResult = await fetchAllSchedules();
+      const scheduleResult = await fetchSchedulesByMovieId(movieId);
 
       if (cinemaResult.success) {
         setCinemas(cinemaResult.cinemas);
@@ -22,6 +25,8 @@ const MovieSchedule = ({ movieId }) => {
       }
 
       if (scheduleResult.success) {
+        console.log(scheduleResult);
+        
         setSchedules(scheduleResult.schedules);
       } else {
         console.error(scheduleResult.error);
@@ -33,10 +38,11 @@ const MovieSchedule = ({ movieId }) => {
 
   // Filter schedules by selected date and movie ID
   const filterSchedulesByDateAndMovie = (date, movieId) => {
+    const selectedDateString = date.toISOString().split('T')[0]; // the standard ISO smth... idk
+    console.log(selectedDateString);
     return schedules.filter(
       (schedule) =>
-        new Date(schedule.start_time).toDateString() === date.toDateString() &&
-        schedule.movie_id === movieId
+        new Date(schedule.start_time).toISOString().split('T')[0] === selectedDateString
     );
   };
 
@@ -48,6 +54,21 @@ const MovieSchedule = ({ movieId }) => {
     selectedDate,
     movieId
   );
+
+  const handleSelectCinema = async (cinema) => {
+    const scheduleResult = await fetchSchedulesByCinemaAndMovie(cinema.cinema_id, movieId);
+    if (scheduleResult.success) {
+      navigate(`${pathname}/tickets/${cinema.cinema_id}`, {
+        state: {
+          cinema,
+          movieId,
+          schedules: scheduleResult.schedules
+        }
+      });
+    } else {
+      console.error(scheduleResult.error);
+    }
+  };
 
   return (
     <div className="schedule-section md:px-24">
@@ -67,26 +88,22 @@ const MovieSchedule = ({ movieId }) => {
             (schedule) => schedule.cinema_id === cinema.cinema_id
           );
 
+          if (cinemaSchedules.length === 0) {
+            return null; // Do not render cinemas without schedules
+          }
+
           return (
             <div className="schedule-item" key={cinema.cinema_id}>
               <div>
                 <h3 className="be-vietnam-pro-semibold">{cinema.name}</h3>
                 <p>{cinema.location}</p>
               </div>
-              <div className="schedule-times">
-                {cinemaSchedules.length > 0 ? (
-                  cinemaSchedules.map((schedule) => (
-                    <div key={schedule.schedule_id}>
-                      <p>
-                        {new Date(schedule.start_time).toLocaleTimeString()} -{" "}
-                        {new Date(schedule.end_time).toLocaleTimeString()}
-                      </p>
-                    </div>
-                  ))
-                ) : (
-                  <p>Không có lịch chiếu</p>
-                )}
-              </div>
+              <a
+                className="btn btn-sm btn-primary text-white"
+                onClick={() => handleSelectCinema(cinema)}
+              >
+                Chọn
+              </a>
             </div>
           );
         })}
