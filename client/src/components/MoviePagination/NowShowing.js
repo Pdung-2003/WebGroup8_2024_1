@@ -53,7 +53,7 @@ export const NowShowing = () => {
   const handleCardClick = (id) => {
     navigate(`/movies/${id}`); // Navigate to the MovieDetails page with the ID
   };
-  
+
   const currentMovies = nowShowingMovies.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
     currentPage * ITEMS_PER_PAGE
@@ -70,8 +70,8 @@ export const NowShowing = () => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
         {currentMovies.map((movie) => (
-          <div 
-            key={movie.id} 
+          <div
+            key={movie.id}
             className="flex items-center justify-center"
             onClick={() => handleCardClick(movie._id)}
           >

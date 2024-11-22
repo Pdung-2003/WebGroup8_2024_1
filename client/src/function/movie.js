@@ -14,7 +14,7 @@ export const fetchAllMovies = async () => {
             return { success: false, error: result.error };
         }
     } catch (error) {
-        return { success: false, error: "Something went wrong!" };
+        return { success: false, error: error.message };
     }
 };
 
@@ -65,7 +65,7 @@ export const fetchMovieById = async (id, format = true) => {
             return { success: true, movie: movieResult, genre: genreResult, crew: crewResult };
         }
     } catch (error) {
-        return { success: false, error: "Something went wrong!" };
+        return { success: false, error: error.message };
     }
 };
 
@@ -112,13 +112,13 @@ export const fetchMovieByName = async (name, format = true) => {
         }
 
         if (format) {
-            const formattedMovie = formatMovieDetails(movieResult, genreResult, crewResult);            
+            const formattedMovie = formatMovieDetails(movieResult, genreResult, crewResult);
             return { success: true, movie: formattedMovie };
         } else {
             return { success: true, movie: movieResult, genre: genreResult, crew: crewResult };
         }
     } catch (error) {
-        return { success: false, error: "Something went wrong!" };
+        return { success: false, error: error.message };
     }
 };
 
@@ -165,13 +165,14 @@ export const fetchShowingMovies = async () => {
             },
         });
         const result = await response.json();
+        console.log(response);
         if (response.ok) {
             return { success: true, movies: result };
         } else {
             return { success: false, error: result.error };
         }
     } catch (error) {
-        return { success: false, error: "Something went wrong!" };
+        return { success: false, error: error.message };
     }
 };
 
@@ -191,6 +192,6 @@ export const fetchGenreById = async (id) => {
             return { success: false, error: result.error };
         }
     } catch (error) {
-        return { success: false, error: "Something went wrong!" };
+        return { success: false, error: error.message };
     }
 };
