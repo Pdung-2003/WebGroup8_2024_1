@@ -22,7 +22,6 @@
     "sequelize": "^6.37.5",
     "server": "file:"
   },
-  "devDependencies": {},
   "keywords": [],
   "description": ""
 }

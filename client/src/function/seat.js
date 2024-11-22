@@ -1,11 +1,14 @@
 export const fetchSeatsByRoom = async (roomId) => {
     try {
         const response = await fetch(`${process.env.REACT_APP_BACKEND_API}/seat/room/${roomId}`);
-        const seats = await response.json();
 
         if (!response.ok) {
-            throw new Error(seats.error || 'Failed to fetch seats');
+            const errorText = await response.text(); 
+            throw new Error(`Failed to fetch seats: ${response.status} ${response.statusText} - ${errorText}`);
         }
+
+        const seats = await response.json();
+        console.log(seats);
 
         const formattedSeats = {
             platinum: {
@@ -49,9 +52,9 @@ export const fetchSeatsByRoom = async (roomId) => {
             }
         });
 
-        return Object.values(formattedSeats);
+        return {success: true, seats: Object.values(formattedSeats)};
     } catch (error) {
         console.error('Error fetching seats:', error);
-        return null;
+        return { success: false, error: error.message };
     }
 };
