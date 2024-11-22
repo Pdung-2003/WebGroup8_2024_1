@@ -3,8 +3,7 @@ import { isSignedIn } from "../../function/auth";
 import logo from "../../assets/logo.png";
 
 const Navbar = () => {
-  // const signedIn = isSignedIn();
-  const [signedIn, setSignedIn] = useState(false);
+  const [signedIn, setSignedIn] = useState(isSignedIn());
   const [top, setTop] = useState(true);
 
   useEffect(() => {
@@ -33,7 +32,7 @@ const Navbar = () => {
           <div className="navbar">
             <div className="navbar-start">
               <a href="/" className="flex flex-row items-center justify-start">
-                <div class="w-12">
+                <div className="w-12">
                   <img src={logo} alt="Logo" className="img" />
                 </div>
                 <div className="mx-1 be-vietnam-pro-black tracking-widest text-3xl">CINEMAX</div>
@@ -42,8 +41,8 @@ const Navbar = () => {
             <div className="navbar-end">
               {signedIn ? (
                 <>
-                  <div class="avatar">
-                    <div class="w-9 rounded-full">
+                  <div className="avatar">
+                    <div className="w-9 rounded-full">
                       <img
                         src="https://bhdstar.vn/wp-content/assets/loodo/no-user.jpg"
                         alt="Avatar"
