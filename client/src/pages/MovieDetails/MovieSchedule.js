@@ -10,7 +10,7 @@ const MovieSchedule = ({ movieId }) => {
   const navigate = useNavigate();
   const [cinemas, setCinemas] = useState([]);
   const [schedules, setSchedules] = useState([]);
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [date, setDate] = useState(new Date());
 
   // Fetch cinemas and schedules from backend
   useEffect(() => {
@@ -26,7 +26,7 @@ const MovieSchedule = ({ movieId }) => {
 
       if (scheduleResult.success) {
         console.log(scheduleResult);
-        
+
         setSchedules(scheduleResult.schedules);
       } else {
         console.error(scheduleResult.error);
@@ -46,12 +46,12 @@ const MovieSchedule = ({ movieId }) => {
     );
   };
 
-  const handleDateSelect = (date) => {
-    setSelectedDate(new Date(date));
+  const handleDateSelect = (selectedDate) => {
+    setDate(new Date(selectedDate));
   };
 
   const schedulesForSelectedDateAndMovie = filterSchedulesByDateAndMovie(
-    selectedDate,
+    date,
     movieId
   );
 
@@ -77,7 +77,6 @@ const MovieSchedule = ({ movieId }) => {
         <DatePicker
           getSelectedDay={handleDateSelect}
           endDate={100}
-          selectDate={new Date()}
           labelFormat={"MMMM"}
           color={"#d1082a"}
         />
