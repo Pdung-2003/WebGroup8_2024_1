@@ -34,7 +34,7 @@ const MovieSchedule = ({ movieId }) => {
     };
 
     getCinemasAndSchedules();
-  }, []);
+  }, );
 
   // Filter schedules by selected date and movie ID
   const filterSchedulesByDateAndMovie = (date, movieId) => {
