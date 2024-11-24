@@ -1,5 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { isSignedIn } from "../function/auth";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements, useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import { fetchPaymentData, createPaymentIntent } from "../function/payment";
@@ -9,10 +11,16 @@ import "../components/Payment/payment.css";
 const stripePromise = loadStripe(`${process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY}`);
 
 const CheckoutForm = ({ paymentData }) => {
+  const navigate = useNavigate();
   const stripe = useStripe();
   const elements = useElements();
   const [error, setError] = useState(null);
   const [isPaid, setIsPaid] = useState(false);
+
+  console.log(isSignedIn());
+  if (!isSignedIn()) {
+    navigate("/sign-in");
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -37,7 +45,7 @@ const CheckoutForm = ({ paymentData }) => {
           setIsPaid(true);
 
           const bookingData = {
-            user_id: paymentData.user_id, 
+            user_id: paymentData.user_id,
             schedule_id: paymentData.schedule.schedule_id,
             total_price: paymentData.totalPrice,
             booking_date: new Date(),
