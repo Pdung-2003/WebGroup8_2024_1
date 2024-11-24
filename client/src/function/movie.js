@@ -176,6 +176,27 @@ export const fetchShowingMovies = async () => {
     }
 };
 
+// Fetch all movies with status "upcoming"
+export const fetchUpcomingMovies = async () => {
+    try {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_API}/movie/status/upcoming`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+        const result = await response.json();
+        if (response.ok) {
+            return { success: true, movies: result };
+        } else {
+            return { success: false, error: result.error };
+        }
+    } catch (error) {
+        return { success: false, error: error.message };
+    }
+};
+
+
 // Fetch genre by ID
 export const fetchGenreById = async (id) => {
     try {
