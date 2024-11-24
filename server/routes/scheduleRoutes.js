@@ -7,7 +7,7 @@ const Room = require('../model/Room');
 
 // CREATE a new schedule
 router.post('/', async (req, res) => {
-    const { cinema_id, movie_id, room_name, start_time, end_time } = req.body;
+    const { cinema_id, movie_id, room_id, start_time, end_time } = req.body;
     try {
         // Check if cinema exists
         const cinema = await Cinema.findByPk(cinema_id);
@@ -22,7 +22,7 @@ router.post('/', async (req, res) => {
         }
 
         // Check if room exists and belongs to the cinema
-        const room = await Room.findOne({ where: { room_name, cinema_id } });
+        const room = await Room.findOne({ where: { room_id, cinema_id } });
         if (!room) {
             return res.status(404).json({ error: 'Room not found in the specified cinema' });
         }
