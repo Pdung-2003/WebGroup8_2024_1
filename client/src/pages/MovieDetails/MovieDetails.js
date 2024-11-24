@@ -26,7 +26,7 @@ const MovieDetails = () => {
   }
 
   return (
-    <div className="movie-page container bg-base-100">
+    <div className="movie-page container-fluid bg-base-100">
       <div
         className="top"
         style={{
@@ -38,9 +38,9 @@ const MovieDetails = () => {
             <div className="banner">
               <div className="left flex md:flex-row flex-col">
                 <div
-                  className="movie-poster md:basis-1/3"
+                  className="movie-poster md:basis-1/3 md:min-h-[700px] md:min-w-[470px]"
                 >
-                  <img src={movie.portraitposter} alt={movie.title} className="h-full"></img>
+                  <img src={movie.portraitposter} alt={movie.title} className="rounded-lg object-cover h-full w-full"></img>
                 </div>
                 <div className="movie-details min-h-full h-full md:basis-2/3">
                   <p className="title be-vietnam-pro-black text-primary">

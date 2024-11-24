@@ -28,32 +28,32 @@ const Navbar = () => {
   return (
     <header className={`sticky top-0 z-50 ${!top && "drop-shadow-md"}`}>
       <nav className="border-2">
-        <div className="container bg-base-100 px-24">
+        <div className="container-fluid bg-base-100 md:px-24">
           <div className="navbar">
             <div className="navbar-start">
               <a href="/" className="flex flex-row items-center justify-start">
-                <div className="w-12">
+                <div className="w-8 md:w-12">
                   <img src={logo} alt="Logo" className="img" />
                 </div>
-                <div className="mx-1 be-vietnam-pro-black tracking-widest text-3xl">CINEMAX</div>
+                <div className="mx-1 be-vietnam-pro-black tracking-widest text-xl md:text-3xl">CINEMAX</div>
               </a>
             </div>
             <div className="navbar-end">
               {signedIn ? (
                 <>
                   <div className="avatar">
-                    <div className="w-9 rounded-full">
+                    <div className="w-7 md:w-9 rounded-full">
                       <img
                         src="https://bhdstar.vn/wp-content/assets/loodo/no-user.jpg"
                         alt="Avatar"
                       />
                     </div>
                   </div>
-                  <span className="mx-2">Username</span>
+                  <span className="mx-2 text-xs md:text-lg">Username</span>
                   <span>|</span>
                   <a
                     href="/auth/signin"
-                    className="mx-2 be-vietnam-pro-bold"
+                    className="mx-2 text-sm md:text-lg be-vietnam-pro-bold"
                     onClick={handleLogout}
                   >
                     Đăng xuất
