@@ -12,6 +12,16 @@ router.post('/', async (req, res) => {
     }
 });
 
+// CREATE multiple tickets
+router.post('/bulk', async (req, res) => {
+    try {
+      const tickets = await Ticket.bulkCreate(req.body);
+      res.status(201).json(tickets);
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+
 // READ all tickets
 router.get('/', async (req, res) => {
     try {
