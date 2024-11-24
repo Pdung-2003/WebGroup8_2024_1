@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { fetchMovieById } from "../../../function/movie";
 import { fetchSeatsByRoom } from "../../../function/seat";
 import "./Tickets.css";
 
 const Tickets = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const { movieId, cinema, schedules } = location.state;
 
   const [movie, setMovie] = useState(null);
@@ -59,6 +60,19 @@ const Tickets = () => {
     } else {
       setSelectedSeats([...selectedSeats, seat]);
     }
+  };
+
+  const handleProceedToPayment = () => {
+    const totalPrice = selectedSeats.reduce((acc, seat) => acc + seat.price, 0);
+    const paymentData = {
+      cinema,
+      schedule: selectedSchedule,
+      movie,
+      seats: selectedSeats,
+      totalPrice,
+    };
+    localStorage.setItem("paymentData", JSON.stringify(paymentData));
+    navigate("/payment");
   };
 
   const generateSeatLayout = () => {
@@ -232,9 +246,9 @@ const Tickets = () => {
               </h3>
             </div>
 
-            <a href={`/payment/`} className="btn btn-sm btn-primary text-white">
+            <button onClick={handleProceedToPayment} className="btn btn-sm btn-primary text-white">
               Chọn
-            </a>
+            </button>
           </div>
         </div>
       </div>
