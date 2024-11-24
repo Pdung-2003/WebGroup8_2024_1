@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { isSignedIn } from "../../../function/auth";
 import { fetchMovieById } from "../../../function/movie";
 import { fetchSeatsByRoom } from "../../../function/seat";
 import "./Tickets.css";
@@ -14,6 +15,11 @@ const Tickets = () => {
   const [selectedSchedule, setSelectedSchedule] = useState(null);
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [error, setError] = useState(null);
+
+  console.log(isSignedIn());
+  if (!isSignedIn()) {
+    navigate("/sign-in");
+  }
 
   useEffect(() => {
     const fetchMovie = async () => {
