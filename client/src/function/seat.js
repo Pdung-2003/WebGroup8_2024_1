@@ -38,9 +38,18 @@ export const fetchSeatsByRoom = async (roomId) => {
             rows[seat.seat_row].cols[colIndex].seats.push({
                 type: "seat",
                 status: seat.seat_status,
-                seat_id: seat.seat_id
+                seat_id: seat.seat_id,
+                seat_col: seat.seat_col
             });
         });
+
+        // Sort the seats within each column
+        Object.keys(rows).forEach(rowname => {
+            rows[rowname].cols.forEach(col => {
+              col.seats.sort((a, b) => a.seat_col - b.seat_col);
+            });
+        });
+  
 
         Object.keys(rows).forEach(rowname => {
             if (["H", "G"].includes(rowname)) {

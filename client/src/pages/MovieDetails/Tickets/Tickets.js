@@ -120,15 +120,16 @@ const Tickets = () => {
                                 col: colIndex,
                                 seat_id: seat.seat_id,
                                 price: seatType.price,
+                                seat_col: seat.seat_col
                               })
                             }
                           >
-                            {seatIndex + 1}
+                            {seat.seat_col}
                           </span>
                         )}
                         {seat.status === "booked" && (
                           <span className="seat-unavailable">
-                            {seatIndex + 1}
+                            {seat.seat_col}
                           </span>
                         )}
                       </div>
