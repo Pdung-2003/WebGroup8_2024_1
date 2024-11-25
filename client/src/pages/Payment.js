@@ -138,7 +138,7 @@ export const PaymentPage = () => {
           <h2>Ghế đã chọn</h2>
           {paymentData.seats.map((seat, index) => (
             <p key={index}>
-              <strong>Ghế:</strong> {seat.row}{seat.col + 1} - {seat.price} ₫
+              <strong>Ghế:</strong> {seat.row}{seat.seat_col} - {seat.price} ₫
             </p>
           ))}
         </div>
