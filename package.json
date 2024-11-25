@@ -1,9 +1,0 @@
-{
-  "dependencies": {
-    "@ant-design/icons": "^5.5.1",
-    "@stripe/react-stripe-js": "^3.0.0",
-    "@stripe/stripe-js": "^5.2.0",
-    "antd": "^5.22.2",
-    "stripe": "^17.4.0"
-  }
-}

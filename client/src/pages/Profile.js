@@ -2,7 +2,8 @@ import React from "react";
 
 const Profile = () => {
   const userInfo = {
-    name: "TonyStark@example.com",
+    name: "Tony Stark",
+    email: "tony@example.com",
     tel: "555-0124",
   };
 
