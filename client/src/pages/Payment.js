@@ -59,7 +59,6 @@ const CheckoutForm = ({ paymentData }) => {
               seat_id: seat.seat_id,
               cinema_id: paymentData.cinema.cinema_id,
               price: seat.price,
-              status: "unused",
             }));
 
             const ticketsResult = await createTickets(ticketsData);
