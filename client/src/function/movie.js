@@ -196,6 +196,25 @@ export const fetchUpcomingMovies = async () => {
     }
 };
 
+// Fetch all featured movies
+export const fetchFeaturedMovies = async () => {
+    try {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_API}/movie/featured/true`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+        const result = await response.json();
+        if (response.ok) {
+            return { success: true, movies: result };
+        } else {
+            return { success: false, error: result.error };
+        }
+    } catch (error) {
+        return { success: false, error: error.message };
+    }
+};
 
 // Fetch genre by ID
 export const fetchGenreById = async (id) => {
