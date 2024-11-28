@@ -34,7 +34,7 @@ const Navbar = () => {
         <a href="/profile">Thông tin cá nhân</a>
       </Menu.Item>
       <Menu.Item key="2">
-        <a href="/settings">Cài đặt</a>
+        <a href="/user-tickets">Vé đã đặt</a>
       </Menu.Item>
       <Menu.Divider />
       <Menu.Item key="3" danger onClick={handleLogout}>
