@@ -10,6 +10,7 @@ import './App.css';
 import PaymentPage from './pages/Payment';
 import Footer from './components/Footer/Footer';
 import Profile from './pages/Profile';
+import UserTickets from './pages/UserTickets';
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
             <Route path="/auth/signup" element={<SignUp />} />
             <Route path="/about" element={<About />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/user-tickets" element={<UserTickets />} />
             <Route path="/movies/:id" element={<MovieDetails />} />
             <Route path="/movies/:id/tickets/:id" element={<Tickets />} />
             <Route path="/payment" element={<PaymentPage/>} />
