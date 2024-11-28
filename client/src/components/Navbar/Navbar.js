@@ -46,7 +46,7 @@ const Navbar = () => {
   return (
     <header className={`sticky top-0 z-50 ${!top && "drop-shadow-md"}`}>
       <nav className="border-2">
-        <div className="container bg-base-100 px-24">
+        <div className="container-fluid bg-base-100 px-24">
           <div className="navbar">
             <div className="navbar-start">
               <a href="/" className="flex flex-row items-center justify-start">
