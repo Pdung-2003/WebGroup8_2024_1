@@ -19,26 +19,3 @@ export const fetchPaymentData = () => {
     const { clientSecret } = await response.json();
     return clientSecret;
   };
-  
-  export const createBooking = async (paymentData) => {
-    const response = await fetch(`${process.env.REACT_APP_BACKEND_API}/booking`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        cinema: paymentData.cinema,
-        schedule: paymentData.schedule,
-        movie: paymentData.movie,
-        seats: paymentData.seats,
-        totalPrice: paymentData.totalPrice,
-      }),
-    });
-  
-    if (!response.ok) {
-      throw new Error("Failed to create booking");
-    }
-  
-    const result = await response.json();
-    return result;
-  };
