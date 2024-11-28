@@ -50,7 +50,7 @@ const MovieDetails = () => {
                     <p className="formats">
                       { movie.ageLimit && <span class="badge badge-lg badge-primary mr-1">{movie.ageLimit}</span> }
                       { movie.type && <span class="badge badge-lg badge-neutral mr-1">{movie.type}</span> }
-                      { movie.formats.map((format, index) => {
+                      { movie.formats?.map((format, index) => {
                         return (
                           <span
                             className="badge badge-outline badge-lg mr-1"
@@ -66,7 +66,7 @@ const MovieDetails = () => {
                     <p className="about italic">{movie.about}</p>
                     <p className="crew">
                       Đạo diễn:{" "}
-                      {movie.crew.map((member, index) => (
+                      {movie.crew?.map((member, index) => (
                         <span key={member._id}>
                           {member.name}
                           {index < movie.crew.length - 1 ? ", " : ""}
@@ -75,7 +75,7 @@ const MovieDetails = () => {
                     </p>
                     <p className="cast">
                       Diễn viên:{" "}
-                      {movie.cast.map((actor, index) => (
+                      {movie.cast?.map((actor, index) => (
                         <span key={actor._id}>
                           {actor.name}
                           {index < movie.cast.length - 1 ? ", " : ""}
