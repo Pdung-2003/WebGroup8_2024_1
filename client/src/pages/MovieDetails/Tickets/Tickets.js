@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { isSignedIn } from "../../../function/auth";
+import { isSignedIn, getUserInfo } from "../../../function/auth";
 import { fetchMovieById } from "../../../function/movie";
 import { fetchSeatsByRoom } from "../../../function/seat";
 import "./Tickets.css";
@@ -18,7 +18,7 @@ const Tickets = () => {
 
   console.log(isSignedIn());
   if (!isSignedIn()) {
-    navigate("/sign-in");
+    navigate("/auth/signin");
   }
 
   useEffect(() => {
@@ -70,7 +70,10 @@ const Tickets = () => {
 
   const handleProceedToPayment = () => {
     const totalPrice = selectedSeats.reduce((acc, seat) => acc + seat.price, 0);
+    const userInfo = getUserInfo();
+    console.log(localStorage.user);
     const paymentData = {
+      user_id: userInfo.id,
       cinema,
       schedule: selectedSchedule,
       movie,

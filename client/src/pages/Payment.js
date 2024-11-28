@@ -19,7 +19,7 @@ const CheckoutForm = ({ paymentData }) => {
 
   console.log(isSignedIn());
   if (!isSignedIn()) {
-    navigate("/sign-in");
+    navigate("/auth/signin");
   }
 
   const handleSubmit = async (event) => {
