@@ -8,7 +8,7 @@ import "./Tickets.css";
 const Tickets = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { movieId, cinema, schedules } = location.state;
+  const { cinema, movieId, schedules } = location.state;
 
   const [movie, setMovie] = useState(null);
   const [seatsBySchedule, setSeatsBySchedule] = useState({});
