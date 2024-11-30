@@ -48,8 +48,8 @@ const MovieDetails = () => {
                   </p>
                   <div className="movie-formats">
                     <p className="formats">
-                      { movie.ageLimit && <span class="badge badge-lg badge-primary mr-1">{movie.ageLimit}</span> }
-                      { movie.type && <span class="badge badge-lg badge-neutral mr-1">{movie.type}</span> }
+                      { movie.ageLimit && <span className="badge badge-lg badge-primary mr-1">{movie.ageLimit}</span> }
+                      { movie.type && <span className="badge badge-lg badge-neutral mr-1">{movie.type}</span> }
                       { movie.formats?.map((format, index) => {
                         return (
                           <span
