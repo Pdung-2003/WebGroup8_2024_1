@@ -34,20 +34,21 @@ const MovieSchedule = ({ movieId }) => {
     };
 
     getCinemasAndSchedules();
-  }, );
+  }, [date, movieId]);
 
   // Filter schedules by selected date and movie ID
   const filterSchedulesByDateAndMovie = (date, movieId) => {
-    const selectedDateString = date.toISOString().split('T')[0]; // the standard ISO smth... idk
+    const selectedDateString = date.toLocaleDateString(); // This formats the date to local date string
     console.log(selectedDateString);
     return schedules.filter(
       (schedule) =>
-        new Date(schedule.start_time).toISOString().split('T')[0] === selectedDateString
+        new Date(schedule.start_time).toLocaleDateString() === selectedDateString
     );
   };
 
   const handleDateSelect = (selectedDate) => {
     setDate(new Date(selectedDate));
+    console.log(date);
   };
 
   const schedulesForSelectedDateAndMovie = filterSchedulesByDateAndMovie(
@@ -98,6 +99,7 @@ const MovieSchedule = ({ movieId }) => {
                 <p>{cinema.location}</p>
               </div>
               <a
+                href={`${pathname}/tickets/${cinema.cinema_id}`}
                 className="btn btn-sm btn-primary text-white"
                 onClick={() => handleSelectCinema(cinema)}
               >
