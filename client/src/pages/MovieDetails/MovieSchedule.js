@@ -98,13 +98,12 @@ const MovieSchedule = ({ movieId }) => {
                 <h3 className="be-vietnam-pro-semibold">{cinema.name}</h3>
                 <p>{cinema.location}</p>
               </div>
-              <a
-                href={`${pathname}/tickets/${cinema.cinema_id}`}
+              <button
                 className="btn btn-sm btn-primary text-white"
                 onClick={() => handleSelectCinema(cinema)}
               >
                 Chọn
-              </a>
+              </button>
             </div>
           );
         })}
