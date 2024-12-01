@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { isSignedIn } from "../function/auth";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements, useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
-import { fetchPaymentData } from "../function/payment";
+import { createBooking, createTickets } from "../function/book";
+import { fetchPaymentData, createPaymentIntent } from "../function/payment";
 import "../components/Payment/payment.css";
 
 const stripePromise = loadStripe(`${process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY}`);
@@ -55,8 +56,41 @@ const CheckoutForm = ({ paymentData }) => {
     if (error) {
       setError(error.message);
     } else {
-      setIsPaid(true);
-      navigate("/success");
+      const clientSecret = await createPaymentIntent(paymentData.totalPrice);
+      const result = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: paymentMethod.id,
+      });
+      if (result.error) {
+        setError(result.error.message);
+      } else {
+        if (result.paymentIntent.status === "succeeded") {
+          setIsPaid(true);
+          const bookingData = {
+            user_id: paymentData.user_id,
+            schedule_id: paymentData.schedule.schedule_id,
+            total_price: paymentData.totalPrice,
+            booking_date: new Date(),
+          };
+          const bookingResult = await createBooking(bookingData);
+          if (bookingResult.success) {
+            const ticketsData = paymentData.seats.map((seat) => ({
+              booking_id: bookingResult.booking.booking_id,
+              seat_id: seat.seat_id,
+              cinema_id: paymentData.cinema.cinema_id,
+              price: seat.price,
+            }));
+            const ticketsResult = await createTickets(ticketsData);
+            if (ticketsResult.success) {
+              setIsPaid(true);
+              navigate("/success");
+            } else {
+              setError(ticketsResult.error);
+            }
+          } else {
+            setError(bookingResult.error);
+          }
+        }
+      }
     }
   };
 
