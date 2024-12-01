@@ -18,8 +18,8 @@ const App = () => {
         <NavBar />
         <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/auth/signin" element={<SignIn />} />
-            <Route path="/auth/signup" element={<SignUp />} />
+            <Route path="/signin" element={<SignIn />} />
+            <Route path="/signup" element={<SignUp />} />
             <Route path="/about" element={<About />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/user-tickets" element={<UserTickets />} />

@@ -18,7 +18,7 @@ const Tickets = () => {
 
   console.log(isSignedIn());
   if (!isSignedIn()) {
-    navigate("/auth/signin");
+    navigate("/signin");
   }
 
   useEffect(() => {
