@@ -11,12 +11,21 @@ router.post('/signup', async (req, res) => {
         if (!name || !email || !password) {
             return res.status(400).json({ error: 'Name, email, and password are required' });
         }
+        if (password.length < 8) {
+            return res.status(400).json({ error: 'Mật khẩu phải có ít nhất 8 ký tự' });
+        }
         const hashedPassword = await bcrypt.hash(password, 8);
         const user = await User.create({ name, email, tel, password: hashedPassword });
         res.status(201).json(user);
     } catch (error) {
         console.error('Error during sign-up:', error);
-        res.status(400).json({ error: error.message });
+        if (error.name === 'SequelizeUniqueConstraintError') {
+            const field = error.errors[0].path.charAt(0).toUpperCase() + error.errors[0].path.slice(1);
+            const message = `${field} này đã được sử dụng`;
+            return res.status(400).json({ error: message });
+        }
+
+        res.status(500).json({ error: 'Internal server error' });
     }
 });
 
@@ -45,7 +54,7 @@ router.post('/signin', async (req, res) => {
             success: true,
             message: 'Logged in successfully',
             token,
-            user: { 
+            user: {
                 id: user.user_id,
                 name: user.name,
                 email: user.email
@@ -62,7 +71,7 @@ router.post('/signin', async (req, res) => {
 // only authenticated users can enter certain routes
 const authenticateToken = (req, res, next) => {
     // extract the token from Auth header
-    const token = req.header('Authorization')?.split(' ')[1]; 
+    const token = req.header('Authorization')?.split(' ')[1];
     if (!token) {
         return res.status(401).json({ error: 'Access denied' });
     }
@@ -77,4 +86,3 @@ const authenticateToken = (req, res, next) => {
 };
 
 module.exports = { router, authenticateToken };
-

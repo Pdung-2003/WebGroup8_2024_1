@@ -33,7 +33,7 @@ export const signUp = async (formData) => {
         if (response.ok) {
             return { success: true, user: result };
         } else {
-            return { success: false, error: result.error };
+            return { success: false, error: result.error, status: response.status };
         }
     } catch (error) {
         return { success: false, error: "Something went wrong!" };

@@ -44,6 +44,7 @@ export default function Signup() {
             toast.success("Registration successful! Please log in.");
             window.location.href = "/signin";
         } else {
+            setErrors({ confirmPassword: result.error });
             toast.error(result.error);
         }
     };
