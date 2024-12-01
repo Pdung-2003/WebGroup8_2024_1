@@ -16,7 +16,23 @@ router.post('/signup', async (req, res) => {
         }
         const hashedPassword = await bcrypt.hash(password, 8);
         const user = await User.create({ name, email, tel, password: hashedPassword });
-        res.status(201).json(user);
+
+        const token = jwt.sign(
+            { userId: user.user_id },
+            process.env.JWT_SECRET,
+            { expiresIn: '1h' }
+        );
+
+        res.status(201).json({
+            success: true,
+            message: 'Registration successful',
+            token,
+            user: {
+                id: user.user_id,
+                name: user.name,
+                email: user.email
+            }
+        });
     } catch (error) {
         console.error('Error during sign-up:', error);
         if (error.name === 'SequelizeUniqueConstraintError') {

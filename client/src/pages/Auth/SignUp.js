@@ -41,8 +41,11 @@ export default function Signup() {
 
         const result = await signUp(formData);
         if (result.success) {
-            toast.success("Registration successful! Please log in.");
-            window.location.href = "/signin";
+            localStorage.setItem("token", result.token);
+            localStorage.setItem("user", JSON.stringify(result.user));
+            toast.success("Registration successful");
+
+            window.location.href = "/";
         } else {
             setErrors({ confirmPassword: result.error });
             toast.error(result.error);

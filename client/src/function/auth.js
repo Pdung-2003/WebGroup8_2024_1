@@ -31,7 +31,9 @@ export const signUp = async (formData) => {
         });
         const result = await response.json();
         if (response.ok) {
-            return { success: true, user: result };
+            localStorage.setItem("token", result.token);
+            localStorage.setItem("user", JSON.stringify(result.user));
+            return { success: true, token: result.token, user: result.user };
         } else {
             return { success: false, error: result.error, status: response.status };
         }
