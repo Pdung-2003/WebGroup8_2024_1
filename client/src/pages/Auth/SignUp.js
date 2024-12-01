@@ -42,7 +42,7 @@ export default function Signup() {
         const result = await signUp(formData);
         if (result.success) {
             toast.success("Registration successful! Please log in.");
-            window.location.href = "/auth/signin";
+            window.location.href = "/signin";
         } else {
             toast.error(result.error);
         }
@@ -129,7 +129,7 @@ export default function Signup() {
                         </div>
                         <button type="submit" className="w-full btn btn-md btn-primary text-white hover:bg-primary-700 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Đăng ký</button>
                         <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                            Đã có tài khoản? <a href="/auth/signin" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Đăng nhập</a>
+                            Đã có tài khoản? <a href="/signin" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Đăng nhập</a>
                         </p>
                     </form>
                 </div>

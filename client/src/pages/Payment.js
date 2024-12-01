@@ -42,7 +42,7 @@ const CheckoutForm = ({ paymentData }) => {
   const [isPaid, setIsPaid] = useState(false);
 
   if (!isSignedIn()) {
-    navigate("/auth/signin");
+    navigate("/signin");
   }
 
   const handleSubmit = async (event) => {
