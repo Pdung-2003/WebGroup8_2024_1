@@ -11,12 +11,17 @@ const Seat = require('../model/Seat');
 // CREATE a new ticket
 router.post('/', async (req, res) => {
     try {
-        const ticket = await Ticket.create(req.body);
+        const { status, ...rest } = req.body;  // Lấy status nếu có
+        const ticket = await Ticket.create({
+            ...rest,
+            status: status || 'Available'  // Nếu không có status, mặc định là 'Available'
+        });
         res.status(201).json(ticket);
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
 });
+
 
 // CREATE multiple tickets
 router.post('/bulk', async (req, res) => {
@@ -93,10 +98,11 @@ router.get('/user/:user_id', async (req, res) => {
     }
 });
 
-// UPDATE a ticket by ID
+// UPDATE a ticket's status by ID
 router.put('/:id', async (req, res) => {
     try {
-        const [updated] = await Ticket.update(req.body, {
+        const { status } = req.body;
+        const [updated] = await Ticket.update({ status }, {
             where: { ticket_id: req.params.id }
         });
         if (updated) {
@@ -110,6 +116,7 @@ router.put('/:id', async (req, res) => {
     }
 });
 
+
 // DELETE a ticket by ID
 router.delete('/:id', async (req, res) => {
     try {
@@ -121,6 +128,23 @@ router.delete('/:id', async (req, res) => {
         } else {
             res.status(404).json({ error: 'Ticket not found' });
         }
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// FIND tickets by status
+router.get('/status/:status', async (req, res) => {
+    const { status } = req.params;
+    try {
+        if (!['Available', 'Cancelled', 'Expired'].includes(status)) {
+            return res.status(400).json({ error: 'Invalid status' });
+        }
+
+        const tickets = await Ticket.findAll({
+            where: { status }
+        });
+        res.status(200).json(tickets);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
