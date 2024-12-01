@@ -92,3 +92,128 @@
 .pay-button:disabled:hover {
   transform: none;
 }
+.card-selection {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 15px;
+}
+
+.card-selection h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.card-option {
+  cursor: pointer;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  width: 100px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-option:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.card-option img {
+  max-width: 80%;
+  height: auto;
+}
+
+.card-option span {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.9rem;
+}
+
+.pay-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.pay-button:hover {
+  background-color: #0056b3;
+}
+
+.pay-button.paid {
+  background-color: #28a745;
+  cursor: not-allowed;
+}
+.card-selection {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 15px;
+}
+
+.card-selection h3 {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+.cards {
+  display: flex; /* Hiển thị các thẻ theo hàng ngang */
+  gap: 15px; /* Khoảng cách giữa các thẻ */
+  justify-content: center; /* Căn giữa các thẻ */
+  overflow-x: auto; /* Thêm cuộn ngang nếu không đủ không gian */
+  padding-bottom: 10px;
+}
+
+.cards::-webkit-scrollbar {
+  height: 8px; /* Chiều cao thanh cuộn */
+}
+
+.cards::-webkit-scrollbar-thumb {
+  background: #888; /* Màu thanh cuộn */
+  border-radius: 4px;
+}
+
+.cards::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Màu khi hover thanh cuộn */
+}
+
+.card-option {
+  display: flex;
+  flex-direction: column; /* Hình ảnh và text xếp theo cột */
+  align-items: center; /* Căn giữa nội dung */
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  padding: 10px 15px;
+  border-radius: 8px;
+  text-align: center;
+  width: 120px; /* Đảm bảo kích thước đồng nhất */
+  height: 150px; /* Cố định chiều cao */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #fff; /* Màu nền trắng */
+}
+
+.card-option:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.card-option img {
+  max-width: 80%; /* Đảm bảo hình ảnh không vượt quá khung */
+  height: auto;
+  margin-bottom: 10px; /* Khoảng cách giữa hình ảnh và text */
+}
+
+.card-option span {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #333;
+}

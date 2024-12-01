@@ -1,11 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const Profile = () => {
-  const userInfo = {
-    name: "Tony Stark",
-    email: "tony@example.com",
-    tel: "555-0124",
-  };
+  const [userInfo, setUserInfo] = useState(null);
+
+  useEffect(() => {
+    // Lấy dữ liệu người dùng từ localStorage
+    const storedUser = localStorage.getItem("user");
+
+    if (storedUser) {
+      // Chuyển đổi chuỗi JSON thành đối tượng
+      setUserInfo(JSON.parse(storedUser));
+    }
+  }, []);
+
+  // Kiểm tra nếu dữ liệu người dùng chưa được lấy từ localStorage
+  if (!userInfo) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div
@@ -55,7 +66,14 @@ const Profile = () => {
 
         {/* Cột bên phải: Thông tin cá nhân */}
         <div style={{ flex: 1, marginLeft: "50px", marginTop: "20px" }}>
-          <h2 style={{ marginBottom: "36px", fontWeight: "bold", fontSize: "24px", marginLeft: "70px" }}>
+          <h2
+            style={{
+              marginBottom: "36px",
+              fontWeight: "bold",
+              fontSize: "24px",
+              marginLeft: "70px",
+            }}
+          >
             Thông Tin Cá Nhân
           </h2>
           <p style={{ marginBottom: "10px", marginLeft: "100px" }}>
@@ -65,8 +83,7 @@ const Profile = () => {
             <strong>Email:</strong> {userInfo.email}
           </p>
           <p style={{ marginBottom: "10px", marginLeft: "100px" }}>
-            <strong>Số điện thoại:</strong>{" "}
-            {userInfo.tel || "Chưa cập nhật"}
+            <strong>Số điện thoại:</strong> {userInfo.tel || "Chưa cập nhật"}
           </p>
         </div>
       </div>
