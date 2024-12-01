@@ -10,6 +10,11 @@ const Ticket = sequelize.define('Ticket', {
     seat_id: { type: DataTypes.INTEGER },
     cinema_id: { type: DataTypes.INTEGER },
     price: { type: DataTypes.DECIMAL(10, 2) },
+    status: { // Thêm trường status vào model
+        type: DataTypes.ENUM('Available', 'Cancelled', 'Expired'),
+        defaultValue: 'Available', // Trạng thái mặc định là 'Available'
+        allowNull: false
+    }
 }, {
     tableName: 'ticket',
     schema: 'public',
