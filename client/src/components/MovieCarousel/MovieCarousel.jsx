@@ -47,45 +47,52 @@ const MovieCarousel = () => {
           </h1>
         </div>
       </div>
-      <Swiper
-        slidesPerView={1}
-        spaceBetween={5}
-        loop={true}
-        autoplay={{
-          delay: 2000,
-          disableOnInteraction: false,
-        }}
-        pagination={{
-          clickable: true,
-        }}
-        navigation={true}
-        breakpoints={{
-          320: {
-            slidesPerView: 1,
-            spaceBetween: 5,
-          },
-          480: {
-            slidesPerView: 2,
-            spaceBetween: 10,
-          },
-          768: {
-            slidesPerView: 3,
-            spaceBetween: 15,
-          },
-          1024: {
-            slidesPerView: 5,
-            spaceBetween: 20,
-          },
-        }}
-        modules={[Autoplay, Pagination, Navigation]}
-        className="mySwiper"
-      >
-        {upcomingMovies.map((movie) => (
-          <SwiperSlide key={movie._id} className="flex items-center justify-center mb-12">
-            <MovieCard {...movie} />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      {upcomingMovies.length > 0 ? (
+        <Swiper
+          slidesPerView={1}
+          spaceBetween={5}
+          loop={true}
+          autoplay={{
+            delay: 2000,
+            disableOnInteraction: false,
+          }}
+          pagination={{
+            clickable: true,
+          }}
+          navigation={true}
+          breakpoints={{
+            320: {
+              slidesPerView: 1,
+              spaceBetween: 5,
+            },
+            480: {
+              slidesPerView: 2,
+              spaceBetween: 10,
+            },
+            768: {
+              slidesPerView: 3,
+              spaceBetween: 15,
+            },
+            1024: {
+              slidesPerView: 5,
+              spaceBetween: 20,
+            },
+          }}
+          modules={[Autoplay, Pagination, Navigation]}
+          className="mySwiper"
+        >
+          {upcomingMovies.map((movie) => (
+            <SwiperSlide
+              key={movie._id}
+              className="flex items-center justify-center mb-12"
+            >
+              <MovieCard {...movie} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      ) : (
+        <p>Loading...</p>
+    )}
     </div>
   );
 };
