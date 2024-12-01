@@ -7,6 +7,7 @@ import { DownOutlined } from "@ant-design/icons";
 const Navbar = () => {
   const [signedIn, setSignedIn] = useState(isSignedIn());
   const [top, setTop] = useState(true);
+  const [userInfo, setUserInfo] = useState(null);  // State để lưu thông tin người dùng
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -20,6 +21,14 @@ const Navbar = () => {
     window.addEventListener("scroll", scrollHandler);
     return () => window.removeEventListener("scroll", scrollHandler);
   }, [top]);
+
+  useEffect(() => {
+    // Lấy dữ liệu người dùng từ localStorage sau khi component mount
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUserInfo(JSON.parse(storedUser));
+    }
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -43,6 +52,11 @@ const Navbar = () => {
     </Menu>
   );
 
+  // Kiểm tra nếu userInfo vẫn chưa được lấy từ localStorage
+  if (!userInfo) {
+    return <div>Loading...</div>;  // Hiển thị loading trong khi dữ liệu chưa được lấy
+  }
+
   return (
     <header className={`sticky top-0 z-50 ${!top && "drop-shadow-md"}`}>
       <nav className="border-2">
@@ -58,7 +72,6 @@ const Navbar = () => {
             </div>
             <div className="navbar-end">
               {signedIn ? (
-                <>
                 <Dropdown overlay={menu} trigger={["click"]}>
                   <Space className="cursor-pointer">
                     <div className="avatar">
@@ -69,11 +82,10 @@ const Navbar = () => {
                         />
                       </div>
                     </div>
-                    <span>Username</span>
+                    <span>{userInfo.name}</span>
                     <DownOutlined />
                   </Space>
                 </Dropdown>
-                </>
               ) : (
                 <a
                   href="/auth/signin"
