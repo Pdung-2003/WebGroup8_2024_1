@@ -13,7 +13,7 @@ export const signIn = async (formData) => {
             localStorage.setItem("user", JSON.stringify(result.user));
             return { success: true, token: result.token, user: result.user };
         } else {
-            return { success: false, error: result.error };
+            return { success: false, error: result.error, status: response.status };
         }
     } catch (error) {
         return { success: false, error: "Something went wrong!" };

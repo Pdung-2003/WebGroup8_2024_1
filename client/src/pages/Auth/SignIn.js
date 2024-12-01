@@ -22,8 +22,10 @@ export default function SignIn() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("Form submitted");
-        const validationErrors = {};
 
+        setErrors({});
+
+        const validationErrors = {};
         if (!formData.email) validationErrors.email = "Hãy nhập email";
         if (!formData.password) validationErrors.password = "Hãy nhập mật khẩu";
 
@@ -38,7 +40,14 @@ export default function SignIn() {
             localStorage.setItem("token", result.token);
             window.location.href = "/";
         } else {
-            toast.error(result.error);
+            if (result.status === 404) {
+                setErrors({ password: "Tài khoản không tồn tại" });
+                toast.error("Tài khoản không tồn tại");
+            }
+            if (result.status === 401) {
+                setErrors({ password: "Mật khẩu không đúng" });
+                toast.error("Mật khẩu không đúng");
+            }
         }
     };
 
