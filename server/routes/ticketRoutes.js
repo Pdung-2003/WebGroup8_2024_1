@@ -133,7 +133,7 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
-// FIND tickets by status ....
+// FIND tickets by status
 router.get('/status/:status', async (req, res) => {
     const { status } = req.params;
     try {
