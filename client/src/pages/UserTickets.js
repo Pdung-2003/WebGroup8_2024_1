@@ -99,7 +99,7 @@ const UserTickets = () => {
                 cursor: 'pointer',
               }}
             >
-              Hủy vé
+              Hủy
             </button>
           );
         } else if (record.status === "cancelled") {
