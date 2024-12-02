@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from 'react-router-dom';
 import { fetchAllCinemas } from "../../function/cinema";
-import { fetchSchedulesByMovieId, fetchSchedulesByCinemaAndMovie } from "../../function/schedule";
+import { fetchSchedulesByMovieId, fetchSchedulesByCinemaMovieAndDate } from "../../function/schedule";
 import DatePicker from "react-horizontal-datepicker";
 import "./MovieSchedule.css";
 
@@ -57,7 +57,8 @@ const MovieSchedule = ({ movieId }) => {
   );
 
   const handleSelectCinema = async (cinema) => {
-    const scheduleResult = await fetchSchedulesByCinemaAndMovie(cinema.cinema_id, movieId);
+    const selectedDateString = date.toISOString().split('T')[0]; // Format date as YYYY-MM-DD
+    const scheduleResult = await fetchSchedulesByCinemaMovieAndDate(cinema.cinema_id, movieId, selectedDateString);
     if (scheduleResult.success) {
       navigate(`${pathname}/tickets/${cinema.cinema_id}`, {
         state: {
