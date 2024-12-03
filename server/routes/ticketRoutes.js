@@ -89,7 +89,8 @@ router.get('/user/:user_id', async (req, res) => {
             schedule_start_time: ticket.Booking.Schedule.start_time,
             room_name: ticket.Booking.Schedule.Room.room_name,
             cinema_name: ticket.Booking.Schedule.Cinema.name,
-            seat_name: `${ticket.Seat.seat_row}${ticket.Seat.seat_col}`
+            seat_name: `${ticket.Seat.seat_row}${ticket.Seat.seat_col}`,
+            status: ticket.status
         }));
 
         res.status(200).json(formattedTickets);

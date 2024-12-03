@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { fetchTicketsByUserId } from "../function/ticket";
+import { fetchTicketsByUserId, cancelTicketById } from "../function/ticket";
 import { getUserInfo } from "../function/auth";
 import { Table, message } from 'antd';
 import { Typography } from 'antd';
@@ -26,19 +26,9 @@ const UserTickets = () => {
 
   const handleCancel = async (ticketId) => {
     try {
-      console.log(ticketId)
-      // Gửi yêu cầu PUT đến API
-      const response = await fetch(`http://localhost:3001/ticket/${ticketId}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ status: "cancelled" }),
-      });
-  
-      // Kiểm tra phản hồi từ API
-      if (response.ok) {
-        const updatedTicket = await response.json();
+      const result = await cancelTicketById(ticketId);
+      if (result.success) {
+        const updatedTicket = result.ticket;
         
         // Cập nhật trạng thái vé trong state
         setTickets((prevTickets) =>
@@ -48,8 +38,7 @@ const UserTickets = () => {
         );
         message.success("Vé đã được hủy thành công!");
       } else {
-        const errorData = await response.json();
-        message.error(errorData.error || "Không thể hủy vé, vui lòng thử lại sau!");
+        message.error(result.error || "Không thể hủy vé, vui lòng thử lại sau!");
       }
     } catch (error) {
       console.error("Error cancelling ticket:", error);
@@ -92,7 +81,7 @@ const UserTickets = () => {
               onClick={() => handleCancel(record.ticket_id)}
               style={{
                 padding: '5px 10px',
-                backgroundColor: '#ff4d4f',
+                backgroundColor: '#d32f2f',
                 color: '#fff',
                 border: 'none',
                 borderRadius: '4px',
@@ -102,7 +91,7 @@ const UserTickets = () => {
               Hủy vé
             </button>
           );
-        } else if (record.status === "cancelled") {
+        } else if (record.status.toLowerCase() === "cancelled" || record.status.toLowerCase() === "expired") {
           return (
             <button
               disabled
@@ -114,7 +103,7 @@ const UserTickets = () => {
                 borderRadius: '4px',
               }}
             >
-              Đã hủy
+              {record.status.toLowerCase() === "cancelled" ? "Đã hủy" : "Đã hết hạn"}
             </button>
           );
         } else {
