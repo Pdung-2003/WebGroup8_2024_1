@@ -11,7 +11,8 @@ const sequelize = new Sequelize(process.env.DATABASE_URL, {
             require: true,
             rejectUnauthorized: false
         }
-    }
+    },
+    timezone: 'Asia/Bangkok'
 });
 
 // Kiểm tra kết nối
