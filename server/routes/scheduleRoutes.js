@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const { Op } = require('sequelize');
 const Schedule = require('../model/Schedule');
 const Movie = require('../model/Movie');
 const Cinema = require('../model/Cinema');
@@ -139,6 +140,35 @@ router.get('/movie/:movie_id', async (req, res) => {
             res.status(200).json(schedules);
         } else {
             res.status(404).json({ error: 'No schedules found for the specified cinema and movie' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// GET all schedules by cinema_id, movie_id, and date
+router.get('/cinema/:cinema_id/movie/:movie_id/date/:date', async (req, res) => {
+    const { cinema_id, movie_id, date } = req.params;
+    try {
+        const startDate = new Date(date);
+        const endDate = new Date(date);
+        endDate.setDate(endDate.getDate() + 1);
+
+        const schedules = await Schedule.findAll({
+            where: {
+                cinema_id,
+                movie_id,
+                start_time: {
+                    [Op.gte]: startDate,
+                    [Op.lt]: endDate
+                }
+            }
+        });
+
+        if (schedules.length > 0) {
+            res.status(200).json(schedules);
+        } else {
+            res.status(404).json({ error: 'No schedules found for the specified cinema, movie, and date' });
         }
     } catch (error) {
         res.status(500).json({ error: error.message });
