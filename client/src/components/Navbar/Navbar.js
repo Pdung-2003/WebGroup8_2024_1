@@ -7,7 +7,7 @@ import { DownOutlined } from "@ant-design/icons";
 const Navbar = () => {
   const [signedIn, setSignedIn] = useState(isSignedIn());
   const [top, setTop] = useState(true);
-  const [userInfo, setUserInfo] = useState(null);  // State để lưu thông tin người dùng
+  const [userInfo, setUserInfo] = useState({});  // Initialize with an empty object
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -32,6 +32,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("user");
     setSignedIn(false);
     window.location.href = "/";
   };
@@ -51,11 +52,6 @@ const Navbar = () => {
       </Menu.Item>
     </Menu>
   );
-
-  // Kiểm tra nếu userInfo vẫn chưa được lấy từ localStorage
-  if (!userInfo) {
-    return <div>Loading...</div>;  // Hiển thị loading trong khi dữ liệu chưa được lấy
-  }
 
   return (
     <header className={`sticky top-0 z-50 ${!top && "drop-shadow-md"}`}>
@@ -82,7 +78,7 @@ const Navbar = () => {
                         />
                       </div>
                     </div>
-                    <span>{userInfo.name}</span>
+                    <span>{userInfo.name || "Loading..."}</span> {/* Display "Loading..." if userInfo.name is not available */}
                     <DownOutlined />
                   </Space>
                 </Dropdown>
