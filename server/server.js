@@ -1,5 +1,7 @@
 const express = require('express');
 const cors = require('cors');
+const compression = require('compression');
+const helmet = require('helmet');
 require('dotenv').config();
 
 const cinemaRoutes = require('./routes/cinemaRoutes');
@@ -19,6 +21,8 @@ const port = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
+app.use(compression());
+app.use(helmet());
 
 app.use('/cinema', cinemaRoutes);
 app.use('/room', roomRoutes); 
