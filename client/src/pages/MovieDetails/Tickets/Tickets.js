@@ -157,7 +157,7 @@ const Tickets = () => {
   }
 
   return (
-    <div className="ticket-page bg-white">
+    <div className="ticket-page">
       <div className="px-24 py-6">
         <div className="movie card border-2">
           <div className="card-body flex md:flex-row flex-col p-6 gap-6">
@@ -209,7 +209,7 @@ const Tickets = () => {
           </div>
         </div>
 
-        <div className="select-seat my-4">
+        <div className="select-seat card border-2 my-4">
           <div className="time-cont">
             {schedules.map((schedule) => (
               <h3

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { isSignedIn } from "../../function/auth";
 import logo from "../../assets/logo.png";
 import { Dropdown, Menu, Space } from "antd";
-import { DownOutlined } from "@ant-design/icons";
+import { FaChevronDown } from "react-icons/fa6";
 
 const Navbar = () => {
   const [signedIn, setSignedIn] = useState(isSignedIn());
@@ -71,7 +71,7 @@ const Navbar = () => {
                 <Dropdown overlay={menu} trigger={["click"]}>
                   <Space className="cursor-pointer">
                     <div className="avatar">
-                      <div className="w-9 rounded-full">
+                      <div className="w-9 rounded-full mr-0.5">
                         <img
                           src="https://bhdstar.vn/wp-content/assets/loodo/no-user.jpg"
                           alt="Avatar"
@@ -79,7 +79,7 @@ const Navbar = () => {
                       </div>
                     </div>
                     <span>{userInfo.name || "Loading..."}</span> {/* Display "Loading..." if userInfo.name is not available */}
-                    <DownOutlined />
+                    <FaChevronDown />
                   </Space>
                 </Dropdown>
               ) : (

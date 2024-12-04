@@ -34,6 +34,7 @@ const CardSelection = () => {
     </div>
   );
 };
+
 const CheckoutForm = ({ paymentData }) => {
   const navigate = useNavigate();
   const stripe = useStripe();
