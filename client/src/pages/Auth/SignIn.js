@@ -22,8 +22,10 @@ export default function SignIn() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("Form submitted");
-        const validationErrors = {};
 
+        setErrors({});
+
+        const validationErrors = {};
         if (!formData.email) validationErrors.email = "Hãy nhập email";
         if (!formData.password) validationErrors.password = "Hãy nhập mật khẩu";
 
@@ -38,7 +40,14 @@ export default function SignIn() {
             localStorage.setItem("token", result.token);
             window.location.href = "/";
         } else {
-            toast.error(result.error);
+            if (result.status === 404) {
+                setErrors({ password: "Tài khoản không tồn tại" });
+                toast.error("Tài khoản không tồn tại");
+            }
+            if (result.status === 401) {
+                setErrors({ password: "Mật khẩu không đúng" });
+                toast.error("Mật khẩu không đúng");
+            }
         }
     };
 
@@ -82,7 +91,7 @@ export default function SignIn() {
                         </div>
                         <button type="submit" className="w-full btn btn-md btn-primary text-white hover:bg-primary-700 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Đăng nhập</button>
                         <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                            Chưa có tài khoản? <a href="/auth/signup" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Đăng ký</a>
+                            Chưa có tài khoản? <a href="/signup" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Đăng ký</a>
                         </p>
                     </form>
                 </div>

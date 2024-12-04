@@ -84,7 +84,7 @@ const Navbar = () => {
                 </Dropdown>
               ) : (
                 <a
-                  href="/auth/signin"
+                  href="/signin"
                   className="btn btn-sm btn-primary text-white"
                 >
                   Đăng nhập
