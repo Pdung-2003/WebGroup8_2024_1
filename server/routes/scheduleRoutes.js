@@ -152,7 +152,7 @@ router.get('/cinema/:cinema_id/movie/:movie_id/date/:date', async (req, res) => 
     try {
         const startDate = new Date(`${date}T00:00:00.000Z`); // Explicit UTC
         const endDate = new Date(`${date}T00:00:00.000Z`);
-        endDate.setDate(endDate.getDate() + 1);
+        endDate.setUTCDate(endDate.getUTCDate() + 1);
 
         const schedules = await Schedule.findAll({
             where: {
