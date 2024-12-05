@@ -27,7 +27,7 @@ jobs:
       - name: Build client project
         run: |
           cd client
-          npm install
+          npm install --legacy-peer-deps
           npm run build
 
       - name: Set up backend server
