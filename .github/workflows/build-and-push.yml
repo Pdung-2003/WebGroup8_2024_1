@@ -3,7 +3,10 @@ name: Build, Push, Ssh, Pull, Down, Up
 on:
   push:
     branches:
-      - 'staging'
+      - 'master'
+  pull_request:
+    branches:
+      - 'master'
 
 jobs:
   build-and-push:
@@ -12,6 +15,17 @@ jobs:
     steps:
       - name: Checkout files
         uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install esbuild
+        run: npm install -D esbuild
+
+      - name: Build project
+        run: npm run build
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
