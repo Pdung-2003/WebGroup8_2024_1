@@ -62,7 +62,6 @@ jobs:
           file: ./client/Dockerfile
           push: true
           tags: dungpd2003/cinemax-client:staging
-
   # pull-and-up:
   #   name: Pull new image and re run with the new version
   #   runs-on: ubuntu-latest
