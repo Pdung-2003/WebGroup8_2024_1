@@ -62,12 +62,6 @@ jobs:
           file: ./client/Dockerfile
           push: true
           tags: dungpd2003/cinemax-client:staging
-       - name: Debug Docker build
-          run: |
-            echo "Building Docker images..."
-            docker build -t my-image ./client  # Thử build thủ công trong GitHub Actions
-  
-
   # pull-and-up:
   #   name: Pull new image and re run with the new version
   #   runs-on: ubuntu-latest
