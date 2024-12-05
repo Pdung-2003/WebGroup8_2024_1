@@ -162,7 +162,7 @@ const Tickets = () => {
         <div className="movie card border-2">
           <div className="card-body flex md:flex-row flex-col p-6 gap-6">
             <div className="md:basis-1/6">
-              <img src={movie.portraitposter} className="rounded-lg"></img>
+              <img src={movie.portraitposter} alt={movie.title} className="rounded-lg"></img>
             </div>
             <div className="flex flex-col min-h-full h-full md:basis-5/6 gap-4">
               <p className="title be-vietnam-pro-black text-primary">

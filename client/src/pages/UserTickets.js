@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { fetchTicketsByUserId, cancelTicketById } from "../function/ticket";
-import { getUserInfo } from "../function/auth";
 import { Table, message } from 'antd';
 import { Typography } from 'antd';
 
@@ -9,7 +8,6 @@ const { Title } = Typography;
 const UserTickets = () => {
   const [tickets, setTickets] = useState([]);
   const [error, setError] = useState(null);
-  const userInfo = getUserInfo();
 
   useEffect(() => {
     const getTickets = async () => {
@@ -29,7 +27,7 @@ const UserTickets = () => {
       const result = await cancelTicketById(ticketId);
       if (result.success) {
         const updatedTicket = result.ticket;
-        
+
         // Cập nhật trạng thái vé trong state
         setTickets((prevTickets) =>
           prevTickets.map((ticket) =>
