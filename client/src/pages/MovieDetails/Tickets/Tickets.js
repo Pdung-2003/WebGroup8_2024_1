@@ -71,7 +71,6 @@ const Tickets = () => {
   const handleProceedToPayment = () => {
     const totalPrice = selectedSeats.reduce((acc, seat) => acc + seat.price, 0);
     const userInfo = getUserInfo();
-    console.log(localStorage.user);
     const paymentData = {
       user_id: userInfo.id,
       cinema,
@@ -140,12 +139,21 @@ const Tickets = () => {
                   </div>
                 ))}
               </div>
-              <br /> <br /> <br />
             </div>
           ))}
         </div>
+        <br /> <br /> <br />
       </div>
     ));
+  };
+
+  const convertToLocalTime = (utcTime) => {
+    const localTime = new Date(utcTime).toLocaleString("en-US", {
+      timeZone: "Asia/Bangkok",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+    return localTime;
   };
 
   if (error) {
@@ -224,10 +232,7 @@ const Tickets = () => {
                 }}
                 key={schedule.schedule_id}
               >
-                {new Date(schedule.start_time).toLocaleTimeString([], {
-                  hour: "2-digit",
-                  minute: "2-digit",
-                })}
+                {convertToLocalTime(schedule.start_time)}
               </h3>
             ))}
           </div>
