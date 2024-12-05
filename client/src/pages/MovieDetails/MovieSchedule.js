@@ -57,7 +57,7 @@ const MovieSchedule = ({ movieId }) => {
   );
 
   const handleSelectCinema = async (cinema) => {
-    const selectedDateString = date.toISOString().split('T')[0]; // Format date as YYYY-MM-DD
+    const selectedDateString = new Date(date.getTime() - date.getTimezoneOffset() * 60000).toISOString().split('T')[0]; // Format date as YYYY-MM-DD
     const scheduleResult = await fetchSchedulesByCinemaMovieAndDate(cinema.cinema_id, movieId, selectedDateString);
     if (scheduleResult.success) {
       navigate(`${pathname}/tickets/${cinema.cinema_id}`, {
